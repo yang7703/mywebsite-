@@ -1,0 +1,190 @@
+/* ============================================================
+   全站共享设计系统 - 国风古典 · 红金配色
+   所有工具页面共同引用此文件，修改这里即可全站生效
+============================================================= */
+:root{
+  --c-red:#a6231e;
+  --c-red-dark:#7a1a16;
+  --c-gold:#c9a227;
+  --c-gold-light:#e8d18a;
+  --c-ink:#2b2420;
+  --c-ink-soft:#8a7f6f;
+  --c-paper:#fdfaf3;
+  --c-paper-card:#f8f3e7;
+  --c-paper-2:#f1e9d6;
+  --max-w:1080px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--c-paper);
+  color:var(--c-ink);
+  font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.serif{font-family:"Noto Serif SC","Songti SC",serif;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+
+/* ---------- 顶部导航栏 ---------- */
+#site-header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(253,250,243,.92);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--c-gold-light);
+}
+.nav-wrap{
+  max-width:var(--max-w);
+  margin:0 auto;
+  padding:0 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:64px;
+}
+.nav-logo{
+  display:flex;align-items:center;gap:8px;
+  font-size:19px;font-weight:700;color:var(--c-red);
+}
+.nav-logo .dot{
+  width:8px;height:8px;border-radius:50%;background:var(--c-gold);
+  display:inline-block;
+}
+.nav-links{
+  display:flex;gap:2px;
+  list-style:none;margin:0;padding:0;
+  flex-wrap:wrap;
+}
+.nav-links a{
+  padding:8px 12px;
+  font-size:14.5px;
+  font-weight:500;
+  color:var(--c-ink);
+  border-radius:4px;
+  transition:color .15s,background .15s;
+  white-space:nowrap;
+}
+.nav-links a:hover,.nav-links a.active{
+  color:var(--c-red);
+  background:var(--c-paper-card);
+}
+.nav-toggle{
+  display:none;
+  background:none;border:none;cursor:pointer;
+  font-size:24px;color:var(--c-red);
+  padding:4px 8px;
+}
+@media(max-width:860px){
+  .nav-links{
+    display:none;
+    position:absolute;top:64px;left:0;right:0;
+    background:var(--c-paper);
+    flex-direction:column;
+    padding:8px 20px 16px;
+    border-bottom:1px solid var(--c-gold-light);
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+  }
+  .nav-links.open{display:flex;}
+  .nav-links a{padding:12px 4px;border-bottom:1px solid #f1e9d6;border-radius:0;}
+  .nav-toggle{display:block;}
+}
+
+/* ---------- 面包屑 ---------- */
+.breadcrumb{
+  max-width:var(--max-w);margin:0 auto;padding:14px 20px 0;
+  font-size:13px;color:var(--c-ink-soft);
+}
+.breadcrumb a:hover{color:var(--c-red);}
+
+/* ---------- 通用容器 ---------- */
+.page-wrap{max-width:var(--max-w);margin:0 auto;padding:24px 20px 60px;}
+
+/* ---------- 首页Hero ---------- */
+.hero{
+  text-align:center;
+  padding:56px 20px 40px;
+  position:relative;
+}
+.hero .eyebrow{
+  letter-spacing:.35em;font-size:12px;color:var(--c-red);font-weight:600;
+}
+.hero h1{
+  font-size:34px;margin:10px 0 12px;color:var(--c-ink);
+}
+.hero p{
+  font-size:15px;color:var(--c-ink-soft);max-width:520px;margin:0 auto;
+}
+.hero::after{
+  content:"";display:block;width:120px;height:3px;margin:22px auto 0;
+  background:linear-gradient(90deg,transparent,var(--c-gold),transparent);
+}
+
+/* ---------- 工具卡片网格 ---------- */
+.tool-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+  margin-top:36px;
+}
+.tool-card{
+  background:var(--c-paper-card);
+  border:1px solid var(--c-gold-light);
+  border-radius:8px;
+  padding:22px 20px;
+  position:relative;
+  overflow:hidden;
+  transition:transform .15s,box-shadow .15s;
+}
+.tool-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 24px rgba(122,26,22,.12);
+}
+.tool-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--c-red),var(--c-gold));
+  opacity:0;transition:opacity .15s;
+}
+.tool-card:hover::before{opacity:1;}
+.tool-card .ic{font-size:26px;margin-bottom:10px;display:block;}
+.tool-card h3{margin:0 0 6px;font-size:17px;color:var(--c-ink);}
+.tool-card p{margin:0;font-size:13px;color:var(--c-ink-soft);line-height:1.6;}
+.tool-card .tag{
+  display:inline-block;margin-top:10px;font-size:11px;color:var(--c-gold);
+  border:1px solid var(--c-gold-light);padding:2px 8px;border-radius:10px;
+}
+
+/* ---------- 页脚 ---------- */
+#site-footer{
+  border-top:1px solid var(--c-gold-light);
+  background:var(--c-paper-card);
+  margin-top:60px;
+}
+.footer-wrap{
+  max-width:var(--max-w);margin:0 auto;padding:36px 20px;
+  display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;
+}
+.footer-col h4{font-size:13px;color:var(--c-ink-soft);letter-spacing:.1em;margin:0 0 12px;}
+.footer-col a{display:block;font-size:13.5px;color:var(--c-ink);margin-bottom:8px;}
+.footer-col a:hover{color:var(--c-red);}
+.footer-disclaimer{
+  max-width:var(--max-w);margin:0 auto;padding:0 20px 28px;
+  font-size:12px;color:var(--c-ink-soft);line-height:1.7;
+  border-top:1px dashed var(--c-gold-light);padding-top:18px;
+}
+.footer-copyright{
+  text-align:center;font-size:12px;color:var(--c-ink-soft);
+  padding:16px 20px;border-top:1px solid var(--c-gold-light);
+}
+
+/* ---------- 通用文章内容区（SEO文本+广告位） ---------- */
+.article-block{margin-top:36px;font-size:15px;line-height:1.9;color:#4a4038;}
+.article-block h2{font-size:19px;color:var(--c-ink);border-left:4px solid var(--c-red);padding-left:10px;margin:28px 0 12px;}
+.article-block p{margin:0 0 12px;}
+
+/* ---------- 广告位占位容器 ---------- */
+.ad-slot{
+  margin:28px 0;padding:12px;text-align:center;
+  border:1px dashed #ddd0ad;border-radius:6px;
+  font-size:11px;color:#c4b896;min-height:90px;
+  display:flex;align-items:center;justify-content:center;
+}
