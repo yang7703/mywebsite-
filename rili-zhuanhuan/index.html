@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>农历公历互转查询 - 精准换算1900-2100年 | 玄机黄历</title>
+<meta name="description" content="免费在线农历公历互转工具，支持1900年至2100年双向精准换算，自动显示干支纪年、生肖、闰月信息，适合查生日、传统节日、择日参考。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body data-page="rili">
+
+<header id="site-header"></header>
+<div class="breadcrumb"><a href="/">首页</a> / 农历公历互转</div>
+
+<div class="page-wrap">
+<div id="lc-tool-root">
+
+<style>
+#lc-tool-root{
+  --lc-red:var(--c-red);
+  --lc-red-dark:var(--c-red-dark);
+  --lc-gold:var(--c-gold);
+  --lc-gold-light:var(--c-gold-light);
+  --lc-ink:var(--c-ink);
+  --lc-paper:var(--c-paper-card);
+  --lc-paper-2:var(--c-paper-2);
+  font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  color:var(--lc-ink);
+}
+#lc-tool-root *{box-sizing:border-box;}
+#lc-tool-root .lc-serif{font-family:"Noto Serif SC","Songti SC",serif;}
+
+/* 顶部标题区 */
+#lc-tool-root .lc-header{
+  text-align:center;
+  padding:8px 0 28px;
+  position:relative;
+}
+#lc-tool-root .lc-header::after{
+  content:"";
+  display:block;
+  width:120px;height:3px;
+  margin:18px auto 0;
+  background:linear-gradient(90deg,transparent,var(--lc-gold),transparent);
+}
+#lc-tool-root .lc-eyebrow{
+  letter-spacing:.35em;
+  font-size:12px;
+  color:var(--lc-red);
+  font-weight:600;
+}
+#lc-tool-root .lc-title{
+  font-size:30px;
+  font-weight:700;
+  margin:8px 0 6px;
+  color:var(--lc-ink);
+}
+#lc-tool-root .lc-sub{
+  font-size:14px;
+  color:#8a7f6f;
+}
+
+/* 云纹角饰 (signature element) */
+#lc-tool-root .lc-cloud-corner{
+  position:absolute;
+  width:46px;height:46px;
+  opacity:.55;
+}
+#lc-tool-root .lc-cloud-corner.tl{top:-6px;left:0;}
+#lc-tool-root .lc-cloud-corner.tr{top:-6px;right:0;transform:scaleX(-1);}
+
+/* 主卡片 */
+#lc-tool-root .lc-card{
+  background:var(--lc-paper);
+  border:1px solid var(--lc-gold-light);
+  border-radius:6px;
+  box-shadow:0 4px 24px rgba(122,26,22,.08);
+  position:relative;
+  overflow:hidden;
+}
+#lc-tool-root .lc-card::before{
+  content:"";
+  position:absolute;top:0;left:0;right:0;height:6px;
+  background:linear-gradient(90deg,var(--lc-red),var(--lc-gold),var(--lc-red));
+}
+
+/* Tab切换 */
+#lc-tool-root .lc-tabs{
+  display:flex;
+  border-bottom:1px solid var(--lc-gold-light);
+}
+#lc-tool-root .lc-tab{
+  flex:1;
+  text-align:center;
+  padding:16px 8px;
+  cursor:pointer;
+  font-size:16px;
+  font-weight:600;
+  color:#a4977e;
+  position:relative;
+  transition:color .2s;
+  user-select:none;
+}
+#lc-tool-root .lc-tab.active{color:var(--lc-red);}
+#lc-tool-root .lc-tab.active::after{
+  content:"";
+  position:absolute;bottom:-1px;left:50%;
+  transform:translateX(-50%);
+  width:36px;height:3px;
+  background:var(--lc-gold);
+  border-radius:2px;
+}
+
+/* 表单区 */
+#lc-tool-root .lc-panel{padding:28px 24px 24px;display:none;}
+#lc-tool-root .lc-panel.active{display:block;}
+#lc-tool-root .lc-row{
+  display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-bottom:16px;
+}
+#lc-tool-root .lc-field{flex:1;min-width:110px;}
+#lc-tool-root .lc-field label{
+  display:block;font-size:12px;color:#8a7f6f;margin-bottom:6px;letter-spacing:.05em;
+}
+#lc-tool-root select,#lc-tool-root input[type=number]{
+  width:100%;
+  padding:10px 12px;
+  border:1px solid #ddd0ad;
+  border-radius:4px;
+  background:#fffdf8;
+  font-size:15px;
+  color:var(--lc-ink);
+  appearance:none;
+}
+#lc-tool-root select:focus,#lc-tool-root input:focus{
+  outline:2px solid var(--lc-gold);
+  outline-offset:1px;
+}
+#lc-tool-root .lc-leap-check{
+  display:flex;align-items:center;gap:6px;font-size:13px;color:#8a7f6f;
+  min-width:90px;padding-bottom:10px;
+}
+#lc-tool-root .lc-btn{
+  display:block;
+  width:100%;
+  padding:13px;
+  background:var(--lc-red);
+  color:#fdf6e8;
+  border:none;
+  border-radius:4px;
+  font-size:16px;
+  font-weight:700;
+  letter-spacing:.1em;
+  cursor:pointer;
+  transition:background .2s,transform .1s;
+}
+#lc-tool-root .lc-btn:hover{background:var(--lc-red-dark);}
+#lc-tool-root .lc-btn:active{transform:scale(.99);}
+
+/* 结果区 */
+#lc-tool-root .lc-result{
+  margin-top:22px;
+  padding:22px;
+  background:var(--lc-paper-2);
+  border:1px dashed var(--lc-gold);
+  border-radius:6px;
+  display:none;
+}
+#lc-tool-root .lc-result.show{display:block;}
+#lc-tool-root .lc-result-main{
+  text-align:center;
+  font-size:26px;
+  font-weight:700;
+  color:var(--lc-red);
+  margin-bottom:4px;
+}
+#lc-tool-root .lc-result-sub{
+  text-align:center;
+  font-size:14px;
+  color:#8a7f6f;
+  margin-bottom:18px;
+}
+#lc-tool-root .lc-tags{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+#lc-tool-root .lc-tag{
+  background:#fff;
+  border:1px solid var(--lc-gold-light);
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:13px;
+  color:var(--lc-ink);
+}
+#lc-tool-root .lc-tag b{color:var(--lc-red);}
+#lc-tool-root .lc-error{
+  color:var(--lc-red);
+  font-size:13px;
+  text-align:center;
+  margin-top:12px;
+  display:none;
+}
+
+/* 说明文字区（利于SEO内容与AdSense广告位） */
+#lc-tool-root .lc-article{
+  margin-top:36px;
+  padding:0 4px;
+  font-size:15px;
+  line-height:1.9;
+  color:#4a4038;
+}
+#lc-tool-root .lc-article h2{
+  font-size:19px;
+  color:var(--lc-ink);
+  border-left:4px solid var(--lc-red);
+  padding-left:10px;
+  margin:28px 0 12px;
+}
+#lc-tool-root .lc-article p{margin:0 0 12px;}
+
+@media(max-width:600px){
+  #lc-tool-root .lc-title{font-size:24px;}
+  #lc-tool-root .lc-row{flex-direction:column;align-items:stretch;}
+  #lc-tool-root .lc-leap-check{padding-bottom:6px;}
+}
+</style>
+
+<div class="lc-header">
+  <svg class="lc-cloud-corner tl" viewBox="0 0 100 100"><path d="M10,60 Q10,40 30,40 Q30,20 50,25 Q65,10 75,30 Q95,25 90,50 Q95,70 75,68 Q70,85 50,75 Q30,90 25,70 Q5,75 10,60Z" fill="none" stroke="#a6231e" stroke-width="2.5"/></svg>
+  <svg class="lc-cloud-corner tr" viewBox="0 0 100 100"><path d="M10,60 Q10,40 30,40 Q30,20 50,25 Q65,10 75,30 Q95,25 90,50 Q95,70 75,68 Q70,85 50,75 Q30,90 25,70 Q5,75 10,60Z" fill="none" stroke="#c9a227" stroke-width="2.5"/></svg>
+  <div class="lc-eyebrow">黄 历 工 具</div>
+  <h1 class="lc-title lc-serif">农历公历互转查询</h1>
+  <div class="lc-sub">支持1900年—2100年双向精准换算，含干支纪年与生肖</div>
+</div>
+
+<div class="lc-card">
+  <div class="lc-tabs">
+    <div class="lc-tab active" data-tab="s2l">公历 转 农历</div>
+    <div class="lc-tab" data-tab="l2s">农历 转 公历</div>
+  </div>
+
+  <!-- 公历转农历 -->
+  <div class="lc-panel active" id="lc-panel-s2l">
+    <div class="lc-row">
+      <div class="lc-field">
+        <label>公历年</label>
+        <select id="lc-s-year"></select>
+      </div>
+      <div class="lc-field">
+        <label>月</label>
+        <select id="lc-s-month"></select>
+      </div>
+      <div class="lc-field">
+        <label>日</label>
+        <select id="lc-s-day"></select>
+      </div>
+    </div>
+    <button class="lc-btn" onclick="lcConvertS2L()">立 即 查 询</button>
+    <div class="lc-error" id="lc-s2l-error"></div>
+    <div class="lc-result" id="lc-s2l-result">
+      <div class="lc-result-main" id="lc-s2l-main"></div>
+      <div class="lc-result-sub" id="lc-s2l-sub"></div>
+      <div class="lc-tags" id="lc-s2l-tags"></div>
+    </div>
+  </div>
+
+  <!-- 农历转公历 -->
+  <div class="lc-panel" id="lc-panel-l2s">
+    <div class="lc-row">
+      <div class="lc-field">
+        <label>农历年</label>
+        <select id="lc-l-year"></select>
+      </div>
+      <div class="lc-field">
+        <label>月</label>
+        <select id="lc-l-month"></select>
+      </div>
+      <div class="lc-field">
+        <label>日</label>
+        <select id="lc-l-day"></select>
+      </div>
+      <div class="lc-leap-check">
+        <input type="checkbox" id="lc-l-leap"><label for="lc-l-leap" style="margin:0;">闰月</label>
+      </div>
+    </div>
+    <button class="lc-btn" onclick="lcConvertL2S()">立 即 查 询</button>
+    <div class="lc-error" id="lc-l2s-error"></div>
+    <div class="lc-result" id="lc-l2s-result">
+      <div class="lc-result-main" id="lc-l2s-main"></div>
+      <div class="lc-result-sub" id="lc-l2s-sub"></div>
+      <div class="lc-tags" id="lc-l2s-tags"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SEO内容区：请根据需要补充/替换为原创说明文字，也是放置AdSense广告位的理想位置 -->
+<div class="lc-article">
+  <h2 class="lc-serif">什么是农历与公历互转？</h2>
+  <p>农历（阴阳历）是中国传统历法，以月相变化为基础，并通过设置闰月来协调回归年与朔望月之间的差异；公历（阳历）则是国际通用的历法。由于两种历法的计算方式不同，同一天在农历和公历中的日期往往不一致，因此需要专门的换算工具进行精准转换，常用于查询生日、传统节日、婚嫁择日等场景。</p>
+  <h2 class="lc-serif">常见问题</h2>
+  <p><b>Q：为什么农历会有"闰月"？</b><br>A：农历一年（12个朔望月）比公历回归年少约11天，为了让农历年份与季节保持一致，每隔两三年会增加一个闰月进行调整，逢闰年全年为13个月。</p>
+  <p><b>Q：这个工具的换算范围是多少？</b><br>A：本工具支持公元1900年—2100年区间内的公历与农历互转，涵盖绝大多数日常查询需求。</p>
+</div>
+
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------- 农历核心算法（1900-2100） ---------- */
+var lunarInfo=[0x04bd8,0x04ae0,0x0a570,0x054d5,0x0d260,0x0d950,0x16554,0x056a0,0x09ad0,0x055d2,
+0x04ae0,0x0a5b6,0x0a4d0,0x0d250,0x1d255,0x0b540,0x0d6a0,0x0ada2,0x095b0,0x14977,
+0x04970,0x0a4b0,0x0b4b5,0x06a50,0x06d40,0x1ab54,0x02b60,0x09570,0x052f2,0x04970,
+0x06566,0x0d4a0,0x0ea50,0x06e95,0x05ad0,0x02b60,0x186e3,0x092e0,0x1c8d7,0x0c950,
+0x0d4a0,0x1d8a6,0x0b550,0x056a0,0x1a5b4,0x025d0,0x092d0,0x0d2b2,0x0a950,0x0b557,
+0x06ca0,0x0b550,0x15355,0x04da0,0x0a5d0,0x14573,0x052d0,0x0a9a8,0x0e950,0x06aa0,
+0x0aea6,0x0ab50,0x04b60,0x0aae4,0x0a570,0x05260,0x0f263,0x0d950,0x05b57,0x056a0,
+0x096d0,0x04dd5,0x04ad0,0x0a4d0,0x0d4d4,0x0d250,0x0d558,0x0b540,0x0b5a0,0x195a6,
+0x095b0,0x049b0,0x0a974,0x0a4b0,0x0b27a,0x06a50,0x06d40,0x0af46,0x0ab60,0x09570,
+0x04af5,0x04970,0x064b0,0x074a3,0x0ea50,0x06b58,0x055c0,0x0ab60,0x096d5,0x092e0,
+0x0c960,0x0d954,0x0d4a0,0x0da50,0x07552,0x056a0,0x0abb7,0x025d0,0x092d0,0x0cab5,
+0x0a950,0x0b4a0,0x0baa4,0x0ad50,0x055d9,0x04ba0,0x0a5b0,0x15176,0x052b0,0x0a930,
+0x07954,0x06aa0,0x0ad50,0x05b52,0x04b60,0x0a6e6,0x0a4e0,0x0d260,0x0ea65,0x0d530,
+0x05aa0,0x076a3,0x096d0,0x04afb,0x04ad0,0x0a4d0,0x1d0b6,0x0d250,0x0d520,0x0dd45,
+0x0b5a0,0x056d0,0x055b2,0x049b0,0x0a577,0x0a4b0,0x0aa50,0x1b255,0x06d20,0x0ada0,
+0x14b63,0x09370,0x049f8,0x04970,0x064b0,0x168a6,0x0ea50,0x06b20,0x1a6c4,0x0aae0,
+0x0a2e0,0x0d2e3,0x0c960,0x0d557,0x0d4a0,0x0da50,0x05d55,0x056a0,0x0a6d0,0x055d4,
+0x052d0,0x0a9b8,0x0a950,0x0b4a0,0x0b6a6,0x0ad50,0x055a0,0x0aba4,0x0a5b0,0x052b0,
+0x0b273,0x06930,0x07337,0x06aa0,0x0ad50,0x14b55,0x04b60,0x0a570,0x054e4,0x0d160,
+0x0e968,0x0d520,0x0daa0,0x16aa6,0x056d0,0x04ae0,0x0a9d4,0x0a2d0,0x0d150,0x0f252,
+0x0d520];
+
+var Gan=["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"];
+var Zhi=["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
+var Animals=["鼠","牛","虎","兔","龙","蛇","马","羊","猴","鸡","狗","猪"];
+var nStr1=["日","一","二","三","四","五","六","七","八","九","十"];
+var nStr2=["初","十","廿","卅"];
+
+function lYearDays(y){var i,sum=348;for(i=0x8000;i>0x8;i>>=1){sum+=(lunarInfo[y-1900]&i)?1:0;}return sum+leapDays(y);}
+function leapMonth(y){return lunarInfo[y-1900]&0xf;}
+function leapDays(y){if(leapMonth(y)){return (lunarInfo[y-1900]&0x10000)?30:29;}return 0;}
+function monthDays(y,m){if(m>12||m<1)return -1;return (lunarInfo[y-1900]&(0x10000>>m))?30:29;}
+function toChinaMonth(m){var s=nStr1[m]+"月";if(m===1)s="正月";if(m===11)s="冬月";if(m===12)s="腊月";return s;}
+function toChinaDay(d){var s;if(d===10)s="初十";else if(d===20)s="二十";else if(d===30)s="三十";else s=nStr2[Math.floor(d/10)]+nStr1[d%10];return s;}
+
+function solar2lunar(y,m,d){
+  if(y<1900||y>2100)return null;
+  var objDate=new Date(y,m-1,d);
+  var baseDate=new Date(1900,0,31);
+  var offset=Math.floor((objDate-baseDate)/86400000);
+  var temp=0,i;
+  for(i=1900;i<2101&&offset>0;i++){temp=lYearDays(i);offset-=temp;}
+  if(offset<0){offset+=temp;i--;}
+  var isLeap=false,lYear=i,leap=leapMonth(i),lMonth=1,lDay;
+  for(i=1;i<13&&offset>0;i++){
+    if(leap>0&&i===(leap+1)&&!isLeap){--i;isLeap=true;temp=leapDays(lYear);}
+    else{temp=monthDays(lYear,i);}
+    if(isLeap&&i===(leap+1))isLeap=false;
+    offset-=temp;
+  }
+  if(offset===0&&leap>0&&i===leap+1){
+    if(isLeap){isLeap=false;}else{isLeap=true;--i;}
+  }
+  if(offset<0){offset+=temp;--i;}
+  lMonth=i;lDay=offset+1;
+  var gzY=(lYear-4)%60;if(gzY<0)gzY+=60;
+  var animalIdx=(lYear-4)%12;if(animalIdx<0)animalIdx+=12;
+  return{lYear:lYear,lMonth:lMonth,lDay:lDay,isLeap:isLeap,
+    ganZhiYear:Gan[gzY%10]+Zhi[gzY%12],animal:Animals[animalIdx],
+    lMonthCn:(isLeap?"闰":"")+toChinaMonth(lMonth),lDayCn:toChinaDay(lDay)};
+}
+
+function lunar2solar(y,m,isLeap,d){
+  if(y<1900||y>2100)return null;
+  var offset=0,i;
+  for(i=1900;i<y;i++){offset+=lYearDays(i);}
+  var leap=leapMonth(y),isAdd=false;
+  for(i=1;i<m;i++){
+    if(!isAdd){ if(leap<=i&&leap>0){offset+=leapDays(y);isAdd=true;} }
+    offset+=monthDays(y,i);
+  }
+  if(isLeap){offset+=monthDays(y,m);}
+  var stmap=Date.UTC(1900,0,31,0,0,0);
+  var calObj=new Date((offset+d-1)*86400000+stmap);
+  return{y:calObj.getUTCFullYear(),m:calObj.getUTCMonth()+1,d:calObj.getUTCDate()};
+}
+
+/* ---------- UI 交互 ---------- */
+var $=function(id){return document.getElementById(id);};
+
+function fillSelect(sel,start,end,pad){
+  sel.innerHTML="";
+  for(var i=start;i<=end;i++){
+    var opt=document.createElement("option");
+    opt.value=i;
+    opt.textContent=pad?String(i).padStart(2,"0"):i;
+    sel.appendChild(opt);
+  }
+}
+
+function initSelectors(){
+  var today=new Date();
+  fillSelect($("lc-s-year"),1900,2100,false);
+  $("lc-s-year").value=today.getFullYear();
+  fillSelect($("lc-s-month"),1,12,true);
+  $("lc-s-month").value=today.getMonth()+1;
+  fillSelect($("lc-s-day"),1,31,true);
+  $("lc-s-day").value=today.getDate();
+
+  fillSelect($("lc-l-year"),1900,2100,false);
+  $("lc-l-year").value=today.getFullYear();
+  fillSelect($("lc-l-month"),1,12,true);
+  fillSelect($("lc-l-day"),1,30,true);
+}
+initSelectors();
+
+/* Tab切换 */
+var tabs=document.querySelectorAll("#lc-tool-root .lc-tab");
+for(var t=0;t<tabs.length;t++){
+  tabs[t].addEventListener("click",function(){
+    for(var j=0;j<tabs.length;j++)tabs[j].classList.remove("active");
+    this.classList.add("active");
+    var name=this.getAttribute("data-tab");
+    document.getElementById("lc-panel-s2l").classList.toggle("active",name==="s2l");
+    document.getElementById("lc-panel-l2s").classList.toggle("active",name==="l2s");
+  });
+}
+
+window.lcConvertS2L=function(){
+  var y=parseInt($("lc-s-year").value,10),m=parseInt($("lc-s-month").value,10),d=parseInt($("lc-s-day").value,10);
+  var err=$("lc-s2l-error"),res=$("lc-s2l-result");
+  var chk=new Date(y,m-1,d);
+  if(chk.getMonth()!==m-1||chk.getFullYear()!==y){
+    err.textContent="日期不存在，请检查输入（例如2月没有30日）";err.style.display="block";res.classList.remove("show");return;
+  }
+  var r=solar2lunar(y,m,d);
+  if(!r){err.textContent="仅支持1900年—2100年范围内的日期查询";err.style.display="block";res.classList.remove("show");return;}
+  err.style.display="none";
+  $("lc-s2l-main").textContent=r.ganZhiYear+"年 "+r.lMonthCn+r.lDayCn;
+  $("lc-s2l-sub").textContent="公历 "+y+"年"+m+"月"+d+"日 对应的农历日期";
+  $("lc-s2l-tags").innerHTML=
+    '<span class="lc-tag">生肖 <b>'+r.animal+'</b></span>'+
+    '<span class="lc-tag">干支纪年 <b>'+r.ganZhiYear+'年</b></span>'+
+    (r.isLeap?'<span class="lc-tag">今年为 <b>闰月</b></span>':'');
+  res.classList.add("show");
+};
+
+window.lcConvertL2S=function(){
+  var y=parseInt($("lc-l-year").value,10),m=parseInt($("lc-l-month").value,10),d=parseInt($("lc-l-day").value,10);
+  var isLeap=$("lc-l-leap").checked;
+  var err=$("lc-l2s-error"),res=$("lc-l2s-result");
+  var lm=leapMonth(y);
+  if(isLeap&&lm!==m){
+    err.textContent=lm?("该年闰月为闰"+toChinaMonth(lm)+"，请重新选择"):"该农历年份没有闰月";
+    err.style.display="block";res.classList.remove("show");return;
+  }
+  var maxDay=isLeap?leapDays(y):monthDays(y,m);
+  if(d>maxDay){
+    err.textContent="该农历月份最多只有"+maxDay+"天，请重新选择";
+    err.style.display="block";res.classList.remove("show");return;
+  }
+  var r=lunar2solar(y,m,isLeap,d);
+  if(!r){err.textContent="仅支持1900年—2100年范围内的日期查询";err.style.display="block";res.classList.remove("show");return;}
+  err.style.display="none";
+  var gzY=(y-4)%60;if(gzY<0)gzY+=60;
+  var animalIdx=(y-4)%12;if(animalIdx<0)animalIdx+=12;
+  $("lc-l2s-main").textContent=r.y+"年"+r.m+"月"+r.d+"日";
+  $("lc-l2s-sub").textContent="农历 "+Gan[gzY%10]+Zhi[gzY%12]+"年"+(isLeap?"闰":"")+toChinaMonth(m)+toChinaDay(d)+" 对应的公历日期";
+  $("lc-l2s-tags").innerHTML=
+    '<span class="lc-tag">生肖 <b>'+Animals[animalIdx]+'</b></span>'+
+    '<span class="lc-tag">星期 <b>'+["日","一","二","三","四","五","六"][new Date(r.y,r.m-1,r.d).getDay()]+'</b></span>';
+  res.classList.add("show");
+};
+
+})();
+</script>
+</div>
+
+<footer id="site-footer"></footer>
+<script src="/assets/nav.js"></script>
+</body>
+</html>
