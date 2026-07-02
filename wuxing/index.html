@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>五行查询 - 生辰八字五行属性/五行缺什么在线查询 | 玄机黄历</title>
+<meta name="description" content="免费在线五行查询工具，根据出生年月日时计算八字五行分布，查看金木水火土是否齐全、五行缺什么、五行强弱与喜用五行参考。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body data-page="wuxing">
+
+<header id="site-header"></header>
+<div class="breadcrumb"><a href="/">首页</a> / 五行查询</div>
+
+<div class="page-wrap">
+<div id="lc-tool-root">
+<style>
+#lc-tool-root{--lc-red:var(--c-red);--lc-gold:var(--c-gold);--lc-gold-light:var(--c-gold-light);--lc-ink:var(--c-ink);--lc-paper:var(--c-paper-card);--lc-paper-2:var(--c-paper-2);--lc-textsoft:var(--c-text-soft);--lc-textfaint:var(--c-text-faint);font-family:"Noto Sans SC",sans-serif;color:var(--lc-ink);}
+#lc-tool-root *{box-sizing:border-box;}
+#lc-tool-root .lc-serif{font-family:"Noto Serif SC",serif;}
+#lc-tool-root .lc-header{text-align:center;padding:8px 0 28px;}
+#lc-tool-root .lc-header::after{content:"";display:block;width:120px;height:3px;margin:18px auto 0;background:linear-gradient(90deg,transparent,var(--lc-gold),transparent);}
+#lc-tool-root .lc-eyebrow{letter-spacing:.35em;font-size:12px;color:var(--lc-gold);font-weight:600;}
+#lc-tool-root .lc-title{font-size:30px;font-weight:700;margin:8px 0 6px;}
+#lc-tool-root .lc-sub{font-size:14px;color:var(--lc-textsoft);}
+#lc-tool-root .lc-card{background:var(--lc-paper);border:1px solid var(--c-border);border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,.35);overflow:hidden;position:relative;}
+#lc-tool-root .lc-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--lc-gold-dark,#a9822f),var(--lc-gold),var(--c-purple));}
+#lc-tool-root .lc-panel{padding:28px 24px 24px;}
+#lc-tool-root .lc-row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-bottom:16px;}
+#lc-tool-root .lc-field{flex:1;min-width:110px;}
+#lc-tool-root .lc-field label{display:block;font-size:12px;color:var(--lc-textsoft);margin-bottom:6px;}
+#lc-tool-root select{width:100%;padding:10px 12px;border:1px solid var(--c-border-strong);border-radius:6px;background:var(--c-bg-3);font-size:15px;color:var(--lc-ink);}
+#lc-tool-root .lc-btn{display:block;width:100%;padding:13px;background:linear-gradient(135deg,var(--lc-gold-light),var(--lc-gold-dark,#a9822f));color:#1a1408;border:none;border-radius:6px;font-size:16px;font-weight:700;letter-spacing:.1em;cursor:pointer;}
+#lc-tool-root .lc-error{color:var(--lc-red);font-size:13px;text-align:center;margin-top:12px;display:none;}
+#lc-tool-root .lc-result{margin-top:26px;display:none;}
+#lc-tool-root .lc-result.show{display:block;}
+#lc-tool-root .lc-wx-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px;}
+#lc-tool-root .lc-wx-cell{background:var(--lc-paper-2);border:1px solid var(--c-border);border-radius:8px;padding:16px 6px;text-align:center;}
+#lc-tool-root .lc-wx-cell .wx-ic{font-size:22px;margin-bottom:6px;}
+#lc-tool-root .lc-wx-cell .wx-name{font-size:14px;font-weight:700;margin-bottom:4px;}
+#lc-tool-root .lc-wx-cell .wx-pct{font-size:12px;color:var(--lc-textsoft);}
+#lc-tool-root .lc-wx-cell.weak{outline:2px dashed var(--lc-red);}
+#lc-tool-root .lc-summary{background:var(--lc-paper-2);border:1px solid var(--c-border);border-radius:8px;padding:18px 20px;font-size:14.5px;line-height:1.9;color:var(--lc-textsoft);}
+#lc-tool-root .lc-summary b{color:var(--lc-gold-light);}
+#lc-tool-root .lc-article{margin-top:36px;font-size:15px;line-height:1.9;color:var(--lc-textsoft);}
+#lc-tool-root .lc-article h2{font-size:19px;color:var(--lc-ink);border-left:4px solid var(--lc-gold);padding-left:10px;margin:28px 0 12px;}
+#lc-tool-root .lc-article p{margin:0 0 12px;}
+@media(max-width:600px){#lc-tool-root .lc-row{flex-direction:column;align-items:stretch;}#lc-tool-root .lc-wx-grid{grid-template-columns:repeat(5,1fr);gap:6px;}#lc-tool-root .lc-wx-cell{padding:10px 2px;}#lc-tool-root .lc-wx-cell .wx-name{font-size:12px;}}
+</style>
+
+<div class="lc-header">
+  <div class="lc-eyebrow">FIVE ELEMENTS</div>
+  <h1 class="lc-title lc-serif">五行查询</h1>
+  <p class="lc-sub">根据生辰八字，查看金木水火土五行分布与强弱</p>
+</div>
+
+<div class="lc-card">
+  <div class="lc-panel">
+    <div class="lc-row">
+      <div class="lc-field"><label>出生年</label><select id="wx-year"></select></div>
+      <div class="lc-field"><label>月</label><select id="wx-month"></select></div>
+      <div class="lc-field"><label>日</label><select id="wx-day"></select></div>
+      <div class="lc-field"><label>时（不确定可选12时）</label><select id="wx-hour"></select></div>
+    </div>
+    <button class="lc-btn" onclick="wxCalc()">查 询 五 行</button>
+    <div class="lc-error" id="wx-error"></div>
+    <div class="lc-result" id="wx-result">
+      <div class="lc-wx-grid" id="wx-grid"></div>
+      <div class="lc-summary" id="wx-summary"></div>
+    </div>
+  </div>
+</div>
+
+<div class="lc-article">
+  <h2 class="lc-serif">五行是什么？</h2>
+  <p>五行指木、火、土、金、水五种基本元素，中国传统文化认为万事万物都可以归类于这五种属性之中，彼此之间存在"相生相克"的动态关系：木生火、火生土、土生金、金生水、水生木为"相生"；木克土、土克水、水克火、火克金、金克木为"相克"。</p>
+  <h2 class="lc-serif">如何查询自己的五行？</h2>
+  <p>传统命理中，一个人的五行属性由其出生年、月、日、时对应的天干地支共同决定，本工具会自动排出四柱八字，并结合天干本气与地支藏干进行加权统计，得出五行分布比例，方便直观了解五行强弱与是否有所欠缺。</p>
+  <h2 class="lc-serif">五行缺什么代表什么？</h2>
+  <p>民间常说"五行缺木/缺金"等说法，指的是命局中某一属性占比明显偏低。传统命理认为可以通过起名用字、方位、颜色等方式适当补益欠缺的五行，但这类说法属于文化传统范畴，并无科学验证，仅供娱乐参考。</p>
+</div>
+
+</div>
+</div>
+
+<script src="/assets/mingli-core.js"></script>
+<script>
+(function(){
+"use strict";
+var $=function(id){return document.getElementById(id);};
+var WX_ICON={木:"🌳",火:"🔥",土:"⛰️",金:"⚙️",水:"💧"};
+var WX_COLOR={木:"#5fae82",火:"#c65d4a",土:"#d4b06a",金:"#c9c4d8",水:"#6ba8d8"};
+var SHENG={木:"火",火:"土",土:"金",金:"水",水:"木"};
+
+function fillSelect(sel,start,end,pad){
+  sel.innerHTML="";
+  for(var i=start;i<=end;i++){var opt=document.createElement("option");opt.value=i;opt.textContent=pad?String(i).padStart(2,"0"):i;sel.appendChild(opt);}
+}
+function init(){
+  fillSelect($("wx-year"),1900,2100,false);$("wx-year").value=1998;
+  fillSelect($("wx-month"),1,12,true);$("wx-month").value=5;
+  fillSelect($("wx-day"),1,31,true);$("wx-day").value=21;
+  fillSelect($("wx-hour"),0,23,true);$("wx-hour").value=12;
+}
+init();
+
+window.wxCalc=function(){
+  var y=parseInt($("wx-year").value,10),m=parseInt($("wx-month").value,10),d=parseInt($("wx-day").value,10),hh=parseInt($("wx-hour").value,10);
+  var err=$("wx-error"),res=$("wx-result");
+  var chk=new Date(y,m-1,d);
+  if(chk.getMonth()!==m-1||chk.getFullYear()!==y){err.textContent="日期不存在，请检查输入";err.style.display="block";res.classList.remove("show");return;}
+  if(y<1900||y>2100){err.textContent="仅支持1900年—2100年范围内的日期";err.style.display="block";res.classList.remove("show");return;}
+  err.style.display="none";
+  var bz=window.MingliCore.getBazi(y,m,d,hh,0);
+  var wx=bz.wuxingCount;
+  var order=["木","火","土","金","水"];
+  var total=0;for(var i=0;i<order.length;i++)total+=wx[order[i]];
+  var minEl=order[0],minVal=wx[order[0]];
+  for(i=1;i<order.length;i++){if(wx[order[i]]<minVal){minVal=wx[order[i]];minEl=order[i];}}
+  var lacking=order.filter(function(k){return wx[k]<total*0.08;});
+
+  var html="";
+  for(i=0;i<order.length;i++){
+    var k=order[i];
+    var pct=total>0?Math.round(wx[k]/total*100):0;
+    var weakCls=(lacking.indexOf(k)>=0)?" weak":"";
+    html+='<div class="lc-wx-cell'+weakCls+'"><div class="wx-ic">'+WX_ICON[k]+'</div><div class="wx-name" style="color:'+WX_COLOR[k]+';">'+k+'</div><div class="wx-pct">'+pct+'%</div></div>';
+  }
+  $("wx-grid").innerHTML=html;
+
+  var summary="";
+  summary+="日主五行为 <b>"+bz.dayMasterEl+"</b>（日干"+bz.day.gan+"），";
+  if(lacking.length===0){
+    summary+="八字中金木水火土五行分布相对齐全，没有明显缺失的属性。";
+  }else{
+    summary+="命局中 <b>"+lacking.join("、")+"</b> 相对偏弱，传统说法称为"+(lacking.length===1?("\"五行缺"+lacking[0]+"\""):("\""+lacking.map(function(x){return"缺"+x;}).join("、")+"\""))+"，民间常通过起名用字或颜色方位等方式适当补益，仅供文化参考。";
+  }
+  summary+="<br>其中占比最低的是 <b>"+minEl+"</b>（"+Math.round(wx[minEl]/total*100)+"%），若要补益，可参考五行相生关系：<b>"+SHENG[minEl==="木"?"水":minEl==="火"?"木":minEl==="土"?"火":minEl==="金"?"土":"金"]+"生"+minEl+"</b>。";
+  $("wx-summary").innerHTML=summary;
+
+  res.classList.add("show");
+};
+wxCalc();
+})();
+</script>
+
+<footer id="site-footer"></footer>
+<script src="/assets/nav.js"></script>
+</body>
+</html>
