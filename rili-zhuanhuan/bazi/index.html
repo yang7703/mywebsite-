@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>八字排盘 - 免费四柱八字在线排盘/五行十神分析 | 玄机黄历</title>
+<meta name="description" content="免费在线八字排盘工具，输入出生年月日时自动排出四柱（年柱、月柱、日柱、时柱），按节气精准定月/定年，显示天干地支、十神、五行分布强弱，传统命理文化参考。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body data-page="bazi">
+
+<header id="site-header"></header>
+<div class="breadcrumb"><a href="/">首页</a> / 八字排盘</div>
+
+<div class="page-wrap">
+<div id="lc-tool-root">
+
+<style>
+#lc-tool-root{
+  --lc-red:var(--c-red);--lc-red-dark:var(--c-red-dark);
+  --lc-gold:var(--c-gold);--lc-gold-light:var(--c-gold-light);
+  --lc-ink:var(--c-ink);--lc-paper:var(--c-paper-card);--lc-paper-2:var(--c-paper-2);
+  --lc-textsoft:var(--c-text-soft);--lc-textfaint:var(--c-text-faint);
+  font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;color:var(--lc-ink);
+}
+#lc-tool-root *{box-sizing:border-box;}
+#lc-tool-root .lc-serif{font-family:"Noto Serif SC","Songti SC",serif;}
+#lc-tool-root .lc-header{text-align:center;padding:8px 0 28px;position:relative;}
+#lc-tool-root .lc-header::after{content:"";display:block;width:120px;height:3px;margin:18px auto 0;background:linear-gradient(90deg,transparent,var(--lc-gold),transparent);}
+#lc-tool-root .lc-eyebrow{letter-spacing:.35em;font-size:12px;color:var(--lc-gold);font-weight:600;}
+#lc-tool-root .lc-title{font-size:30px;font-weight:700;margin:8px 0 6px;color:var(--lc-ink);}
+#lc-tool-root .lc-sub{font-size:14px;color:var(--lc-textsoft);}
+
+#lc-tool-root .lc-card{background:var(--lc-paper);border:1px solid var(--c-border);border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,.35);position:relative;overflow:hidden;}
+#lc-tool-root .lc-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--lc-gold-dark,#a9822f),var(--lc-gold),var(--c-purple));}
+#lc-tool-root .lc-panel{padding:28px 24px 24px;}
+#lc-tool-root .lc-row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-bottom:16px;}
+#lc-tool-root .lc-field{flex:1;min-width:110px;}
+#lc-tool-root .lc-field label{display:block;font-size:12px;color:var(--lc-textsoft);margin-bottom:6px;letter-spacing:.05em;}
+#lc-tool-root select,#lc-tool-root input[type=number],#lc-tool-root input[type=text]{
+  width:100%;padding:10px 12px;border:1px solid var(--c-border-strong);border-radius:6px;
+  background:var(--c-bg-3);font-size:15px;color:var(--lc-ink);appearance:none;
+}
+#lc-tool-root select:focus,#lc-tool-root input:focus{outline:2px solid var(--lc-gold);outline-offset:1px;}
+#lc-tool-root .lc-unknown-check{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--lc-textsoft);min-width:110px;padding-bottom:10px;white-space:nowrap;}
+#lc-tool-root .lc-btn{display:block;width:100%;padding:13px;background:linear-gradient(135deg,var(--lc-gold-light),var(--lc-gold-dark,#a9822f));color:#1a1408;border:none;border-radius:6px;font-size:16px;font-weight:700;letter-spacing:.1em;cursor:pointer;transition:transform .1s,box-shadow .15s;}
+#lc-tool-root .lc-btn:hover{box-shadow:0 6px 18px rgba(212,176,106,.3);}
+#lc-tool-root .lc-btn:active{transform:scale(.99);}
+#lc-tool-root .lc-error{color:var(--lc-red);font-size:13px;text-align:center;margin-top:12px;display:none;}
+
+#lc-tool-root .lc-result{margin-top:26px;display:none;}
+#lc-tool-root .lc-result.show{display:block;}
+#lc-tool-root .lc-pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px;}
+#lc-tool-root .lc-pillar{background:var(--lc-paper-2);border:1px solid var(--c-border);border-radius:8px;padding:14px 8px;text-align:center;}
+#lc-tool-root .lc-pillar .p-label{font-size:11px;color:var(--lc-textfaint);margin-bottom:8px;letter-spacing:.1em;}
+#lc-tool-root .lc-pillar .p-gz{font-size:22px;font-weight:700;color:var(--lc-gold-light);font-family:"Noto Serif SC",serif;line-height:1.3;}
+#lc-tool-root .lc-pillar .p-god{font-size:11.5px;color:var(--c-purple-light);margin-top:8px;}
+#lc-tool-root .lc-pillar.empty .p-gz{color:var(--lc-textfaint);font-size:15px;}
+
+#lc-tool-root .lc-info-tags{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
+#lc-tool-root .lc-tag{background:var(--c-bg-3);border:1px solid var(--c-border);padding:6px 14px;border-radius:20px;font-size:13px;color:var(--lc-ink);}
+#lc-tool-root .lc-tag b{color:var(--lc-gold-light);}
+
+#lc-tool-root .lc-wx-block{background:var(--lc-paper-2);border:1px solid var(--c-border);border-radius:8px;padding:18px 20px;}
+#lc-tool-root .lc-wx-title{font-size:14px;color:var(--lc-textsoft);margin-bottom:12px;}
+#lc-tool-root .lc-wx-row{display:flex;align-items:center;gap:10px;margin-bottom:9px;font-size:13px;}
+#lc-tool-root .lc-wx-row .wx-name{width:34px;flex-shrink:0;color:var(--lc-ink);font-weight:600;}
+#lc-tool-root .lc-wx-bar-bg{flex:1;height:9px;background:var(--c-bg-3);border-radius:5px;overflow:hidden;}
+#lc-tool-root .lc-wx-bar{height:100%;border-radius:5px;}
+#lc-tool-root .lc-wx-val{width:34px;flex-shrink:0;text-align:right;color:var(--lc-textsoft);font-size:12px;}
+
+#lc-tool-root .lc-article{margin-top:36px;padding:0 4px;font-size:15px;line-height:1.9;color:var(--lc-textsoft);}
+#lc-tool-root .lc-article h2{font-size:19px;color:var(--lc-ink);border-left:4px solid var(--lc-gold);padding-left:10px;margin:28px 0 12px;}
+#lc-tool-root .lc-article p{margin:0 0 12px;}
+
+@media(max-width:600px){
+  #lc-tool-root .lc-title{font-size:24px;}
+  #lc-tool-root .lc-row{flex-direction:column;align-items:stretch;}
+  #lc-tool-root .lc-pillars{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+
+<div class="lc-header">
+  <div class="lc-eyebrow">BAZI CHART</div>
+  <h1 class="lc-title lc-serif">八字排盘</h1>
+  <p class="lc-sub">输入出生年月日时，按节气精准定年/定月，自动排出四柱八字</p>
+</div>
+
+<div class="lc-card">
+  <div class="lc-panel">
+    <div class="lc-row">
+      <div class="lc-field"><label>出生年</label><select id="bz-year"></select></div>
+      <div class="lc-field"><label>月</label><select id="bz-month"></select></div>
+      <div class="lc-field"><label>日</label><select id="bz-day"></select></div>
+      <div class="lc-field"><label>时</label><select id="bz-hour"></select></div>
+      <div class="lc-unknown-check"><input type="checkbox" id="bz-unknown"><label for="bz-unknown" style="margin:0;">时辰未知</label></div>
+    </div>
+    <button class="lc-btn" onclick="bzCalc()">立 即 排 盘</button>
+    <div class="lc-error" id="bz-error"></div>
+
+    <div class="lc-result" id="bz-result">
+      <div class="lc-info-tags" id="bz-tags"></div>
+      <div class="lc-pillars" id="bz-pillars"></div>
+      <div class="lc-wx-block">
+        <div class="lc-wx-title">五行分布（含地支藏干加权估算，仅供参考）</div>
+        <div id="bz-wx-bars"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="lc-article">
+  <h2 class="lc-serif">什么是八字排盘？</h2>
+  <p>八字，又称"四柱八字"，是以出生的年、月、日、时分别对应的天干地支组合而成的四组"柱"，每柱一干一支，合计八个字，因此得名。传统命理学认为，四柱中天干地支之间的生克关系，能反映一个人先天的五行禀赋与性格倾向，是中国传统命理文化的基础工具之一。</p>
+  <h2 class="lc-serif">年柱、月柱是如何确定的？</h2>
+  <p>与很多简化版本不同，正统八字排盘的年柱以"立春"为界，而非农历正月初一或公历1月1日；月柱则以每月的"节"（如立春、惊蛰、清明等十二节）为界，而不是按公历自然月或农历月划分。本工具已按此规则精确计算节气边界，因此在立春前后出生的朋友，年柱可能与公历年份不同，这是符合传统命理规则的正常现象。</p>
+  <h2 class="lc-serif">十神是什么意思？</h2>
+  <p>十神是以日柱天干（日主）为核心，衡量其余干支与日主五行生克阴阳关系而定义出的十种角色，包括比肩、劫财、食神、伤官、正财、偏财、正官、七杀、正印、偏印，用于分析性格特质、六亲关系与人生际遇的传统命理参考维度。</p>
+  <h2 class="lc-serif">常见问题</h2>
+  <p><b>Q：不知道具体出生时辰怎么办？</b><br>A：可以勾选"时辰未知"，系统会仅排出年、月、日三柱，时柱留空，不影响其余三柱的准确性。</p>
+  <p><b>Q：本工具的结果可以作为人生决策依据吗？</b><br>A：不可以。本工具仅用于传统文化学习与娱乐参考，命理内容不构成医疗、法律、投资、婚恋等专业建议，请理性看待。</p>
+</div>
+
+</div>
+</div>
+
+<script src="/assets/mingli-core.js"></script>
+<script>
+(function(){
+"use strict";
+var $=function(id){return document.getElementById(id);};
+var WX_COLOR={木:"#5fae82",火:"#c65d4a",土:"#d4b06a",金:"#c9c4d8",水:"#6ba8d8"};
+
+function fillSelect(sel,start,end,pad){
+  sel.innerHTML="";
+  for(var i=start;i<=end;i++){
+    var opt=document.createElement("option");
+    opt.value=i;opt.textContent=pad?String(i).padStart(2,"0"):i;
+    sel.appendChild(opt);
+  }
+}
+function init(){
+  var today=new Date();
+  fillSelect($("bz-year"),1900,2100,false);$("bz-year").value=1998;
+  fillSelect($("bz-month"),1,12,true);$("bz-month").value=5;
+  fillSelect($("bz-day"),1,31,true);$("bz-day").value=21;
+  fillSelect($("bz-hour"),0,23,true);$("bz-hour").value=23;
+}
+init();
+
+$("bz-unknown").addEventListener("change",function(){
+  $("bz-hour").disabled=this.checked;
+});
+
+window.bzCalc=function(){
+  var y=parseInt($("bz-year").value,10),m=parseInt($("bz-month").value,10),d=parseInt($("bz-day").value,10);
+  var unknown=$("bz-unknown").checked;
+  var hh=unknown?-1:parseInt($("bz-hour").value,10);
+  var err=$("bz-error"),res=$("bz-result");
+  var chk=new Date(y,m-1,d);
+  if(chk.getMonth()!==m-1||chk.getFullYear()!==y){
+    err.textContent="日期不存在，请检查输入";err.style.display="block";res.classList.remove("show");return;
+  }
+  if(y<1900||y>2100){
+    err.textContent="仅支持1900年—2100年范围内的日期";err.style.display="block";res.classList.remove("show");return;
+  }
+  err.style.display="none";
+  var bz=window.MingliCore.getBazi(y,m,d,hh,0);
+
+  $("bz-tags").innerHTML=
+    '<span class="lc-tag">生肖 <b>'+bz.animal+'</b></span>'+
+    '<span class="lc-tag">日主 <b>'+bz.day.gan+'（'+bz.dayMasterEl+'）</b></span>'+
+    '<span class="lc-tag">八字年 <b>'+bz.baziYear+'年</b></span>';
+
+  var cols=[
+    {label:"年柱",p:bz.year},
+    {label:"月柱",p:bz.month},
+    {label:"日柱",p:bz.day},
+    {label:"时柱",p:bz.hour}
+  ];
+  var html="";
+  for(var i=0;i<cols.length;i++){
+    var c=cols[i];
+    if(c.p){
+      html+='<div class="lc-pillar"><div class="p-label">'+c.label+'</div><div class="p-gz lc-serif">'+c.p.gan+c.p.zhi+'</div><div class="p-god">'+c.p.tenGod+'</div></div>';
+    }else{
+      html+='<div class="lc-pillar empty"><div class="p-label">'+c.label+'</div><div class="p-gz">时辰未知</div></div>';
+    }
+  }
+  $("bz-pillars").innerHTML=html;
+
+  var wx=bz.wuxingCount;
+  var total=wx.木+wx.火+wx.土+wx.金+wx.水;
+  var order=["木","火","土","金","水"];
+  var wxHtml="";
+  for(var j=0;j<order.length;j++){
+    var k=order[j];
+    var pct=total>0?Math.round(wx[k]/total*100):0;
+    wxHtml+='<div class="lc-wx-row"><span class="wx-name">'+k+'</span><div class="lc-wx-bar-bg"><div class="lc-wx-bar" style="width:'+pct+'%;background:'+WX_COLOR[k]+';"></div></div><span class="lc-wx-val">'+pct+'%</span></div>';
+  }
+  $("bz-wx-bars").innerHTML=wxHtml;
+
+  res.classList.add("show");
+};
+
+bzCalc();
+})();
+</script>
+
+<footer id="site-footer"></footer>
+<script src="/assets/nav.js"></script>
+</body>
+</html>
