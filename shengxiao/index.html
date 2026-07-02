@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生肖运势 - 十二生肖年度运势在线查询 | 玄机黄历</title>
+<meta name="description" content="免费在线生肖运势查询工具，结合本年太岁生肖关系，查看十二生肖性格特质与年度运势传统参考，事业财运感情多维解读。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body data-page="shengxiao">
+
+<header id="site-header"></header>
+<div class="breadcrumb"><a href="/">首页</a> / 生肖运势</div>
+
+<div class="page-wrap">
+<div id="lc-tool-root">
+<style>
+#lc-tool-root{--lc-red:var(--c-red);--lc-gold:var(--c-gold);--lc-gold-light:var(--c-gold-light);--lc-ink:var(--c-ink);--lc-paper:var(--c-paper-card);--lc-paper-2:var(--c-paper-2);--lc-textsoft:var(--c-text-soft);--lc-textfaint:var(--c-text-faint);font-family:"Noto Sans SC",sans-serif;color:var(--lc-ink);}
+#lc-tool-root *{box-sizing:border-box;}
+#lc-tool-root .lc-serif{font-family:"Noto Serif SC",serif;}
+#lc-tool-root .lc-header{text-align:center;padding:8px 0 28px;}
+#lc-tool-root .lc-header::after{content:"";display:block;width:120px;height:3px;margin:18px auto 0;background:linear-gradient(90deg,transparent,var(--lc-gold),transparent);}
+#lc-tool-root .lc-eyebrow{letter-spacing:.35em;font-size:12px;color:var(--lc-gold);font-weight:600;}
+#lc-tool-root .lc-title{font-size:30px;font-weight:700;margin:8px 0 6px;}
+#lc-tool-root .lc-sub{font-size:14px;color:var(--lc-textsoft);}
+#lc-tool-root .lc-animal-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:24px;}
+#lc-tool-root .lc-animal-btn{background:var(--lc-paper);border:1px solid var(--c-border);border-radius:10px;padding:14px 4px;text-align:center;cursor:pointer;transition:border-color .15s,transform .15s;}
+#lc-tool-root .lc-animal-btn:hover{transform:translateY(-2px);border-color:var(--c-border-strong);}
+#lc-tool-root .lc-animal-btn.active{border-color:var(--lc-gold);background:var(--lc-paper-2);box-shadow:0 0 0 1px var(--lc-gold);}
+#lc-tool-root .lc-animal-btn .ab-emoji{font-size:26px;}
+#lc-tool-root .lc-animal-btn .ab-name{font-size:12.5px;color:var(--lc-textsoft);margin-top:4px;}
+#lc-tool-root .lc-card{background:var(--lc-paper);border:1px solid var(--c-border);border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,.35);overflow:hidden;position:relative;}
+#lc-tool-root .lc-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--lc-gold-dark,#a9822f),var(--lc-gold),var(--c-purple));}
+#lc-tool-root .lc-panel{padding:28px 24px 24px;}
+#lc-tool-root .lc-year-hero{text-align:center;margin-bottom:22px;}
+#lc-tool-root .lc-year-hero .yh-emoji{font-size:52px;}
+#lc-tool-root .lc-year-hero .yh-name{font-size:22px;font-weight:700;color:var(--lc-gold-light);margin-top:8px;font-family:"Noto Serif SC",serif;}
+#lc-tool-root .lc-year-hero .yh-sub{font-size:13px;color:var(--lc-textsoft);margin-top:4px;}
+#lc-tool-root .lc-rel-tag{display:inline-block;margin-top:12px;padding:5px 16px;border-radius:20px;font-size:13px;font-weight:600;}
+#lc-tool-root .lc-rel-tag.great{background:rgba(95,174,130,.15);color:#5fae82;border:1px solid rgba(95,174,130,.4);}
+#lc-tool-root .lc-rel-tag.normal,#lc-tool-root .lc-rel-tag.neutral{background:rgba(212,176,106,.12);color:var(--lc-gold-light);border:1px solid var(--c-border-strong);}
+#lc-tool-root .lc-rel-tag.caution{background:rgba(212,176,106,.12);color:#e0a94a;border:1px solid rgba(224,169,74,.4);}
+#lc-tool-root .lc-rel-tag.bad{background:rgba(198,93,74,.12);color:var(--lc-red);border:1px solid rgba(198,93,74,.4);}
+#lc-tool-root .lc-sec{margin-bottom:16px;}
+#lc-tool-root .lc-sec h4{font-size:14px;color:var(--lc-gold-light);margin:0 0 8px;}
+#lc-tool-root .lc-sec p{font-size:14px;line-height:1.9;color:var(--lc-textsoft);margin:0;background:var(--lc-paper-2);border:1px solid var(--c-border);border-radius:8px;padding:14px 16px;}
+#lc-tool-root .lc-article{margin-top:36px;font-size:15px;line-height:1.9;color:var(--lc-textsoft);}
+#lc-tool-root .lc-article h2{font-size:19px;color:var(--lc-ink);border-left:4px solid var(--lc-gold);padding-left:10px;margin:28px 0 12px;}
+#lc-tool-root .lc-article p{margin:0 0 12px;}
+@media(max-width:600px){#lc-tool-root .lc-animal-grid{grid-template-columns:repeat(4,1fr);}}
+</style>
+
+<div class="lc-header">
+  <div class="lc-eyebrow">ZODIAC FORTUNE</div>
+  <h1 class="lc-title lc-serif">生肖运势</h1>
+  <p class="lc-sub">选择你的生肖，结合本年太岁生肖关系查看传统运势参考</p>
+</div>
+
+<div class="lc-animal-grid" id="sx-grid"></div>
+
+<div class="lc-card">
+  <div class="lc-panel">
+    <div class="lc-year-hero">
+      <div class="yh-emoji" id="sx-year-emoji">🐴</div>
+      <div class="yh-name lc-serif" id="sx-year-name"></div>
+      <div class="yh-sub" id="sx-year-sub"></div>
+      <div class="lc-rel-tag" id="sx-rel-tag"></div>
+    </div>
+    <div class="lc-sec"><h4>性格特质</h4><p id="sx-trait"></p></div>
+    <div class="lc-sec"><h4>本年运势参考</h4><p id="sx-fortune"></p></div>
+    <div class="lc-sec"><h4>相处建议</h4><p id="sx-advice"></p></div>
+  </div>
+</div>
+
+<div class="lc-article">
+  <h2 class="lc-serif">生肖运势是怎么来的？</h2>
+  <p>民间流传的生肖运势，主要依据当年"太岁"（即当年地支所对应的生肖）与个人生肖之间的三合、六合、相冲、相刑等关系推算大致的年度基调，属于简化版的民俗参考方式，并未结合个人完整生辰八字。</p>
+  <h2 class="lc-serif">本命年是什么意思？</h2>
+  <p>本命年指个人出生生肖与当年生肖相同的年份，民间传统认为本命年运势起伏较大，容易有较多变化，因此有"本命年扎红绳、穿红衣"等祈福习俗，这属于民俗文化范畴。</p>
+  <h2 class="lc-serif">运势内容可以当真吗？</h2>
+  <p>本工具的生肖运势内容整理自传统民俗文化资料，仅供文化学习与娱乐参考，不构成对个人真实运势的预测或建议，请理性看待，人生际遇更多取决于自身努力与选择。</p>
+</div>
+
+</div>
+</div>
+
+<script src="/assets/mingli-core.js"></script>
+<script>
+(function(){
+"use strict";
+var $=function(id){return document.getElementById(id);};
+var EMOJI={鼠:"🐭",牛:"🐮",虎:"🐯",兔:"🐰",龙:"🐉",蛇:"🐍",马:"🐴",羊:"🐑",猴:"🐵",鸡:"🐔",狗:"🐶",猪:"🐷"};
+var TRAITS={
+  鼠:"机敏灵活，观察力强，善于把握机会，人缘好但有时略显精明谨慎。",
+  牛:"踏实稳重，勤恳务实，做事有耐心和毅力，是值得信赖的合作伙伴。",
+  虎:"自信果敢，行动力强，天生具有领导气质，但有时显得较为冲动。",
+  兔:"温和细腻，为人谨慎周到，审美出众，擅长处理人际关系中的细节。",
+  龙:"气场十足，理想远大，天生带有一种自信与魄力，喜欢挑战与突破。",
+  蛇:"聪慧内敛，善于洞察，行事低调而有城府，做事讲究策略与分寸。",
+  马:"热情奔放，追求自由，行动力强，喜欢新鲜事物，社交能力出众。",
+  羊:"性情温和，富有同理心，审美与艺术感强，重视和谐的人际氛围。",
+  猴:"聪明机智，反应敏捷，多才多艺，喜欢新鲜有趣的事物与挑战。",
+  鸡:"勤奋自律，做事认真负责，有较强的时间观念和条理性。",
+  狗:"忠诚正直，重情重义，责任心强，是可靠的朋友与伙伴。",
+  猪:"心地善良，为人真诚，性格随和知足，容易获得他人的信任。"
+};
+var YEAR_ANIMAL_FALLBACK="马"; // 若年份超出精确计算范围，兜底展示当前默认年生肖
+
+function currentYearAnimalGan(){
+  var y=new Date().getFullYear();
+  var yz=window.MingliCore.yearGanZhiByYear(y);
+  var idx=window.MingliCore.Zhi.indexOf(yz.zhi);
+  return{year:y,gan:yz.gan,zhi:yz.zhi,animal:window.MingliCore.Animals[idx]};
+}
+
+function initGrid(){
+  var animals=window.MingliCore.Animals;
+  var grid=$("sx-grid");
+  animals.forEach(function(a){
+    var btn=document.createElement("div");
+    btn.className="lc-animal-btn";
+    btn.setAttribute("data-animal",a);
+    btn.innerHTML='<div class="ab-emoji">'+EMOJI[a]+'</div><div class="ab-name">'+a+'</div>';
+    btn.addEventListener("click",function(){
+      document.querySelectorAll("#lc-tool-root .lc-animal-btn").forEach(function(b){b.classList.remove("active");});
+      btn.classList.add("active");
+      sxCalc(a);
+    });
+    grid.appendChild(btn);
+  });
+}
+initGrid();
+
+function sxCalc(animal){
+  var yInfo=currentYearAnimalGan();
+  $("sx-year-emoji").textContent=EMOJI[yInfo.animal];
+  $("sx-year-name").textContent=yInfo.year+"年 · "+yInfo.gan+yInfo.zhi+"年（生肖"+yInfo.animal+"）";
+  $("sx-year-sub").textContent="以下为生肖【"+animal+"】相对本年太岁生肖【"+yInfo.animal+"】的传统关系参考";
+
+  var rel=window.MingliCore.getZodiacRelation(animal,yInfo.animal);
+  var tagEl=$("sx-rel-tag");
+  var isBenming=(animal===yInfo.animal);
+  tagEl.className="lc-rel-tag "+(isBenming?"caution":rel.level);
+  tagEl.textContent=isBenming?"本命年":rel.label;
+
+  $("sx-trait").textContent=TRAITS[animal];
+
+  var fortune;
+  if(isBenming){
+    fortune="今年是生肖【"+animal+"】的本命年，传统民俗认为本命年运势起伏容易偏大，事业与生活中或有较多变化与调整，建议保持平常心，遇事多几分谨慎与耐心。";
+  }else if(rel.level==="great"){
+    fortune="生肖【"+animal+"】与本年太岁关系为"+rel.label+"，传统说法认为整体运势相对顺遂，人际关系和合作机会较为顺畅，适合主动争取、稳步推进计划。";
+  }else if(rel.level==="bad"){
+    fortune="生肖【"+animal+"】与本年太岁"+rel.label+"，传统说法提示今年容易遇到一些变动或波折，建议行事更加稳健，重要决定前多做准备，避免冲动。";
+  }else if(rel.level==="caution"){
+    fortune="生肖【"+animal+"】与本年太岁关系为"+rel.label+"，传统说法认为今年可能存在一些小摩擦或反复，整体仍属平稳，凡事多一份沟通即可化解。";
+  }else{
+    fortune="生肖【"+animal+"】与本年太岁关系平和，没有明显的相合或相冲迹象，运势总体平稳，发挥空间更多取决于自身的努力与把握。";
+  }
+  $("sx-fortune").textContent=fortune;
+  $("sx-advice").textContent="传统命理更强调「以和为贵」：无论今年与太岁关系如何，保持规律作息、稳健理财、真诚待人，都是历代命理典籍中反复强调的「化解」之道，也是现实生活中真正有效的建议。";
+
+  var heroEl=$("sx-year-emoji").parentElement;
+  if(heroEl&&typeof heroEl.scrollIntoView==="function"){
+    heroEl.scrollIntoView({behavior:"smooth",block:"nearest"});
+  }
+}
+
+// 默认展示今年生肖
+var todayAnimalIdx=(new Date().getFullYear()-4)%12;if(todayAnimalIdx<0)todayAnimalIdx+=12;
+var defaultAnimal=window.MingliCore.Animals[todayAnimalIdx];
+document.querySelectorAll("#lc-tool-root .lc-animal-btn").forEach(function(b){
+  if(b.getAttribute("data-animal")===defaultAnimal)b.classList.add("active");
+});
+sxCalc(defaultAnimal);
+})();
+</script>
+
+<footer id="site-footer"></footer>
+<script src="/assets/nav.js"></script>
+</body>
+</html>
