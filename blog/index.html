@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>命理博客 - 八字/五行/节气传统文化知识 | 玄机黄历</title>
+<meta name="description" content="玄机黄历命理博客，系统讲解八字入门、五行相生相克、二十四节气与命理历法等传统文化知识，适合命理爱好者与新手阅读。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body data-page="blog">
+
+<header id="site-header"></header>
+<div class="breadcrumb"><a href="/">首页</a> / 命理博客</div>
+
+<section class="hero" style="padding:44px 20px 20px;">
+  <div class="eyebrow">CULTURE BLOG</div>
+  <h1 class="serif" style="font-size:30px;">命理文化博客</h1>
+  <p>系统了解八字、五行、节气与传统择日文化背后的知识，而不只是查一个结果</p>
+</section>
+
+<div class="page-wrap" style="padding-top:0;">
+  <div class="blog-grid" id="blog-list-grid"></div>
+</div>
+
+<footer id="site-footer"></footer>
+<script src="/assets/blog-data.js"></script>
+<script>
+(function(){
+var posts=window.BLOG_POSTS||[];
+var grid=document.getElementById("blog-list-grid");
+grid.innerHTML=posts.map(function(p){
+  return '<a class="blog-card" href="/blog/'+p.slug+'/">'+
+    '<div class="blog-card-body">'+
+      '<span class="blog-cat">'+p.category+'</span>'+
+      '<h3>'+p.title+'</h3>'+
+      '<p>'+p.excerpt+'</p>'+
+      '<div class="blog-meta">'+p.date+' · '+p.readTime+'</div>'+
+    '</div>'+
+  '</a>';
+}).join("");
+})();
+</script>
+<script src="/assets/nav.js"></script>
+</body>
+</html>
