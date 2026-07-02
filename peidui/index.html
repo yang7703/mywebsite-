@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>属相配对 - 十二生肖婚配相合度在线查询 | 玄机黄历</title>
+<meta name="description" content="免费在线生肖属相配对工具，基于三合、六合、相冲、相刑、相害等传统生肖关系，查询两个属相之间的婚配相合度与相处建议。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body data-page="peidui">
+
+<header id="site-header"></header>
+<div class="breadcrumb"><a href="/">首页</a> / 属相配对</div>
+
+<div class="page-wrap">
+<div id="lc-tool-root">
+<style>
+#lc-tool-root{--lc-red:var(--c-red);--lc-gold:var(--c-gold);--lc-gold-light:var(--c-gold-light);--lc-ink:var(--c-ink);--lc-paper:var(--c-paper-card);--lc-paper-2:var(--c-paper-2);--lc-textsoft:var(--c-text-soft);--lc-textfaint:var(--c-text-faint);font-family:"Noto Sans SC",sans-serif;color:var(--lc-ink);}
+#lc-tool-root *{box-sizing:border-box;}
+#lc-tool-root .lc-serif{font-family:"Noto Serif SC",serif;}
+#lc-tool-root .lc-header{text-align:center;padding:8px 0 28px;}
+#lc-tool-root .lc-header::after{content:"";display:block;width:120px;height:3px;margin:18px auto 0;background:linear-gradient(90deg,transparent,var(--lc-gold),transparent);}
+#lc-tool-root .lc-eyebrow{letter-spacing:.35em;font-size:12px;color:var(--lc-gold);font-weight:600;}
+#lc-tool-root .lc-title{font-size:30px;font-weight:700;margin:8px 0 6px;}
+#lc-tool-root .lc-sub{font-size:14px;color:var(--lc-textsoft);}
+#lc-tool-root .lc-card{background:var(--lc-paper);border:1px solid var(--c-border);border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,.35);overflow:hidden;position:relative;}
+#lc-tool-root .lc-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--lc-gold-dark,#a9822f),var(--lc-gold),var(--c-purple));}
+#lc-tool-root .lc-panel{padding:28px 24px 24px;}
+#lc-tool-root .lc-picker-row{display:flex;align-items:center;gap:16px;margin-bottom:20px;justify-content:center;flex-wrap:wrap;}
+#lc-tool-root .lc-picker{text-align:center;}
+#lc-tool-root .lc-picker .pk-emoji{width:76px;height:76px;border-radius:50%;background:var(--lc-paper-2);border:2px solid var(--c-border-strong);display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 10px;}
+#lc-tool-root select{padding:9px 12px;border:1px solid var(--c-border-strong);border-radius:6px;background:var(--c-bg-3);font-size:15px;color:var(--lc-ink);}
+#lc-tool-root .lc-plus{font-size:24px;color:var(--lc-gold);}
+#lc-tool-root .lc-btn{display:block;width:100%;padding:13px;background:linear-gradient(135deg,var(--lc-gold-light),var(--lc-gold-dark,#a9822f));color:#1a1408;border:none;border-radius:6px;font-size:16px;font-weight:700;letter-spacing:.1em;cursor:pointer;}
+#lc-tool-root .lc-result{margin-top:26px;display:none;}
+#lc-tool-root .lc-result.show{display:block;}
+#lc-tool-root .lc-score-wrap{text-align:center;margin-bottom:20px;}
+#lc-tool-root .lc-score{font-size:44px;font-weight:800;color:var(--lc-gold-light);font-family:"Noto Serif SC",serif;}
+#lc-tool-root .lc-score-label{font-size:13px;color:var(--lc-textsoft);margin-top:4px;}
+#lc-tool-root .lc-rel-tag{display:inline-block;margin-top:10px;padding:5px 16px;border-radius:20px;font-size:13px;font-weight:600;}
+#lc-tool-root .lc-rel-tag.great{background:rgba(95,174,130,.15);color:#5fae82;border:1px solid rgba(95,174,130,.4);}
+#lc-tool-root .lc-rel-tag.normal,#lc-tool-root .lc-rel-tag.neutral{background:rgba(212,176,106,.12);color:var(--lc-gold-light);border:1px solid var(--c-border-strong);}
+#lc-tool-root .lc-rel-tag.caution{background:rgba(212,176,106,.12);color:#e0a94a;border:1px solid rgba(224,169,74,.4);}
+#lc-tool-root .lc-rel-tag.bad{background:rgba(198,93,74,.12);color:var(--lc-red);border:1px solid rgba(198,93,74,.4);}
+#lc-tool-root .lc-desc{background:var(--lc-paper-2);border:1px solid var(--c-border);border-radius:8px;padding:18px 20px;font-size:14.5px;line-height:1.9;color:var(--lc-textsoft);text-align:center;}
+#lc-tool-root .lc-article{margin-top:36px;font-size:15px;line-height:1.9;color:var(--lc-textsoft);}
+#lc-tool-root .lc-article h2{font-size:19px;color:var(--lc-ink);border-left:4px solid var(--lc-gold);padding-left:10px;margin:28px 0 12px;}
+#lc-tool-root .lc-article p{margin:0 0 12px;}
+</style>
+
+<div class="lc-header">
+  <div class="lc-eyebrow">ZODIAC MATCH</div>
+  <h1 class="lc-title lc-serif">属相配对</h1>
+  <p class="lc-sub">基于三合、六合、相冲、相刑、相害等传统生肖关系判断相合度</p>
+</div>
+
+<div class="lc-card">
+  <div class="lc-panel">
+    <div class="lc-picker-row">
+      <div class="lc-picker">
+        <div class="pk-emoji" id="pd-emoji-a">🐭</div>
+        <select id="pd-a"></select>
+      </div>
+      <div class="lc-plus">✕</div>
+      <div class="lc-picker">
+        <div class="pk-emoji" id="pd-emoji-b">🐉</div>
+        <select id="pd-b"></select>
+      </div>
+    </div>
+    <button class="lc-btn" onclick="pdCalc()">查 看 相 合 度</button>
+
+    <div class="lc-result" id="pd-result">
+      <div class="lc-score-wrap">
+        <div class="lc-score" id="pd-score"></div>
+        <div class="lc-score-label">相合指数</div>
+        <div class="lc-rel-tag" id="pd-rel-tag"></div>
+      </div>
+      <div class="lc-desc" id="pd-desc"></div>
+    </div>
+  </div>
+</div>
+
+<div class="lc-article">
+  <h2 class="lc-serif">生肖配对的判断依据是什么？</h2>
+  <p>传统生肖相合理论主要依据地支之间的关系：子辰申三合、丑巳酉三合、寅午戌三合、卯未亥三合，三合属相之间关系最为融洽；子丑、寅亥、卯戌、辰酉、巳申、午未为六合，相合程度也很高；而地支相冲（如子午相冲）、相刑、相害的属相组合，传统上则被认为相处需要更多磨合。</p>
+  <h2 class="lc-serif">相冲/相刑就代表不合适吗？</h2>
+  <p>不完全是。生肖配对是简化的民俗参考方式，仅基于出生年份的地支关系推算，并未考虑八字全局、性格、成长环境等更复杂的因素。现实中的感情与婚姻和谐与否，更多取决于双方的沟通、包容与共同经营，生肖配对结果仅供娱乐参考，不建议作为婚恋决策的主要依据。</p>
+</div>
+
+</div>
+</div>
+
+<script src="/assets/mingli-core.js"></script>
+<script>
+(function(){
+"use strict";
+var $=function(id){return document.getElementById(id);};
+var EMOJI={鼠:"🐭",牛:"🐮",虎:"🐯",兔:"🐰",龙:"🐉",蛇:"🐍",马:"🐴",羊:"🐑",猴:"🐵",鸡:"🐔",狗:"🐶",猪:"🐷"};
+
+function init(){
+  var animals=window.MingliCore.Animals;
+  var a=$("pd-a"),b=$("pd-b");
+  animals.forEach(function(x){
+    var o1=document.createElement("option");o1.value=x;o1.textContent=x;a.appendChild(o1);
+    var o2=document.createElement("option");o2.value=x;o2.textContent=x;b.appendChild(o2);
+  });
+  a.value="鼠";b.value="龙";
+  a.addEventListener("change",function(){$("pd-emoji-a").textContent=EMOJI[a.value];});
+  b.addEventListener("change",function(){$("pd-emoji-b").textContent=EMOJI[b.value];});
+}
+init();
+
+window.pdCalc=function(){
+  var a=$("pd-a").value,b=$("pd-b").value;
+  var rel=window.MingliCore.getZodiacRelation(a,b);
+  $("pd-score").textContent=rel.score;
+  var tagEl=$("pd-rel-tag");
+  tagEl.className="lc-rel-tag "+rel.level;
+  tagEl.textContent=rel.label;
+  $("pd-desc").textContent="生肖【"+a+"】与生肖【"+b+"】—— "+rel.desc;
+  $("pd-result").classList.add("show");
+};
+pdCalc();
+})();
+</script>
+
+<footer id="site-footer"></footer>
+<script src="/assets/nav.js"></script>
+</body>
+</html>
