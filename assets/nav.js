@@ -34,7 +34,7 @@ function buildHeader(){
   if(!el)return;
   el.innerHTML=
     '<div class="nav-wrap">'+
-      '<a href="/" class="nav-logo"><span class="dot"></span>玄机黄历</a>'+
+      '<a href="/" class="nav-logo"><span class="dot">玄</span>玄机黄历</a>'+
       '<nav><ul class="nav-links" id="nav-links-list">'+linksHtml+'</ul></nav>'+
       '<button class="nav-toggle" id="nav-toggle" aria-label="菜单">&#9776;</button>'+
     '</div>';
