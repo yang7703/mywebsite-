@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>择吉日查询 - 搬家/结婚/开业黄道吉日在线查询 | 玄机黄历</title>
+<meta name="description" content="免费在线择吉日工具，按传统建除十二值算法，一键查询某月内适合搬家、结婚、开业、动土等事项的黄道吉日，避开冲煞日期。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body data-page="zeri">
+
+<header id="site-header"></header>
+<div class="breadcrumb"><a href="/">首页</a> / 择吉日查询</div>
+
+<div class="page-wrap">
+<div id="lc-tool-root">
+<style>
+#lc-tool-root{--lc-red:var(--c-red);--lc-gold:var(--c-gold);--lc-gold-light:var(--c-gold-light);--lc-ink:var(--c-ink);--lc-paper:var(--c-paper-card);--lc-paper-2:var(--c-paper-2);--lc-textsoft:var(--c-text-soft);--lc-textfaint:var(--c-text-faint);font-family:"Noto Sans SC",sans-serif;color:var(--lc-ink);}
+#lc-tool-root *{box-sizing:border-box;}
+#lc-tool-root .lc-serif{font-family:"Noto Serif SC",serif;}
+#lc-tool-root .lc-header{text-align:center;padding:8px 0 28px;}
+#lc-tool-root .lc-header::after{content:"";display:block;width:120px;height:3px;margin:18px auto 0;background:linear-gradient(90deg,transparent,var(--lc-gold),transparent);}
+#lc-tool-root .lc-eyebrow{letter-spacing:.35em;font-size:12px;color:var(--lc-gold);font-weight:600;}
+#lc-tool-root .lc-title{font-size:30px;font-weight:700;margin:8px 0 6px;}
+#lc-tool-root .lc-sub{font-size:14px;color:var(--lc-textsoft);}
+#lc-tool-root .lc-card{background:var(--lc-paper);border:1px solid var(--c-border);border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,.35);overflow:hidden;position:relative;}
+#lc-tool-root .lc-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--lc-gold-dark,#a9822f),var(--lc-gold),var(--c-purple));}
+#lc-tool-root .lc-panel{padding:28px 24px 24px;}
+#lc-tool-root .lc-row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-bottom:16px;}
+#lc-tool-root .lc-field{flex:1;min-width:110px;}
+#lc-tool-root .lc-field label{display:block;font-size:12px;color:var(--lc-textsoft);margin-bottom:6px;}
+#lc-tool-root select{width:100%;padding:10px 12px;border:1px solid var(--c-border-strong);border-radius:6px;background:var(--c-bg-3);font-size:15px;color:var(--lc-ink);}
+#lc-tool-root .lc-btn{display:block;width:100%;padding:13px;background:linear-gradient(135deg,var(--lc-gold-light),var(--lc-gold-dark,#a9822f));color:#1a1408;border:none;border-radius:6px;font-size:16px;font-weight:700;letter-spacing:.1em;cursor:pointer;}
+#lc-tool-root .lc-error{color:var(--lc-red);font-size:13px;text-align:center;margin-top:12px;display:none;}
+#lc-tool-root .lc-result{margin-top:26px;display:none;}
+#lc-tool-root .lc-result.show{display:block;}
+#lc-tool-root .lc-result-title{font-size:14px;color:var(--lc-textsoft);margin-bottom:14px;}
+#lc-tool-root .lc-day-list{display:flex;flex-direction:column;gap:10px;}
+#lc-tool-root .lc-day-item{display:flex;align-items:center;justify-content:space-between;background:var(--lc-paper-2);border:1px solid var(--c-border);border-radius:8px;padding:12px 16px;flex-wrap:wrap;gap:8px;}
+#lc-tool-root .lc-day-item .di-date{font-size:15px;font-weight:700;color:var(--lc-gold-light);min-width:130px;}
+#lc-tool-root .lc-day-item .di-gz{font-size:12.5px;color:var(--lc-textfaint);}
+#lc-tool-root .lc-day-item .di-officer{font-size:12px;padding:3px 10px;border-radius:14px;background:rgba(95,174,130,.12);color:#5fae82;border:1px solid rgba(95,174,130,.3);}
+#lc-tool-root .lc-empty{text-align:center;color:var(--lc-textfaint);font-size:14px;padding:30px 0;}
+#lc-tool-root .lc-article{margin-top:36px;font-size:15px;line-height:1.9;color:var(--lc-textsoft);}
+#lc-tool-root .lc-article h2{font-size:19px;color:var(--lc-ink);border-left:4px solid var(--lc-gold);padding-left:10px;margin:28px 0 12px;}
+#lc-tool-root .lc-article p{margin:0 0 12px;}
+@media(max-width:600px){#lc-tool-root .lc-row{flex-direction:column;align-items:stretch;}}
+</style>
+
+<div class="lc-header">
+  <div class="lc-eyebrow">AUSPICIOUS DAYS</div>
+  <h1 class="lc-title lc-serif">择吉日查询</h1>
+  <p class="lc-sub">选择事项类型与月份，一键筛选出建除十二值中相合的黄道吉日</p>
+</div>
+
+<div class="lc-card">
+  <div class="lc-panel">
+    <div class="lc-row">
+      <div class="lc-field"><label>事项类型</label>
+        <select id="zr-type">
+          <option value="move">搬家 / 入宅</option>
+          <option value="marry">结婚 / 嫁娶</option>
+          <option value="open">开业 / 开市</option>
+          <option value="build">动土 / 修造</option>
+          <option value="sign">签约 / 立券</option>
+          <option value="travel">出行</option>
+        </select>
+      </div>
+      <div class="lc-field"><label>年</label><select id="zr-year"></select></div>
+      <div class="lc-field"><label>月</label><select id="zr-month"></select></div>
+    </div>
+    <button class="lc-btn" onclick="zrCalc()">查 询 吉 日</button>
+    <div class="lc-error" id="zr-error"></div>
+    <div class="lc-result" id="zr-result">
+      <div class="lc-result-title" id="zr-title"></div>
+      <div class="lc-day-list" id="zr-list"></div>
+    </div>
+  </div>
+</div>
+
+<div class="lc-article">
+  <h2 class="lc-serif">择吉日的原理是什么？</h2>
+  <p>本工具基于"建除十二值"体系：每个值神（建、除、满、平、定、执、破、危、成、收、开、闭）都对应一组传统认为适宜进行的事项。选择事项类型后，系统会在指定月份内自动筛选出值神与该事项相合的日期，作为参考吉日列表。</p>
+  <h2 class="lc-serif">筛选结果可以直接采用吗？</h2>
+  <p>完整的传统择日通常还会结合生辰八字、冲煞生肖、二十八宿等更多因素综合考量，本工具仅覆盖建除十二值这一常见维度，结果仅供初步参考。涉及婚嫁、乔迁等重要事项，建议进一步咨询当地习俗或专业人士，并结合自身实际安排时间。</p>
+</div>
+
+</div>
+</div>
+
+<script src="/assets/mingli-core.js"></script>
+<script>
+(function(){
+"use strict";
+var $=function(id){return document.getElementById(id);};
+function fillSelect(sel,start,end,pad){sel.innerHTML="";for(var i=start;i<=end;i++){var opt=document.createElement("option");opt.value=i;opt.textContent=pad?String(i).padStart(2,"0"):i;sel.appendChild(opt);}}
+
+var TYPE_OFFICERS={
+  move:{name:"搬家/入宅",officers:["开","成","满","定"]},
+  marry:{name:"结婚/嫁娶",officers:["成","定","开","满"]},
+  open:{name:"开业/开市",officers:["成","开","满"]},
+  build:{name:"动土/修造",officers:["平","执","开"]},
+  sign:{name:"签约/立券",officers:["满","定","成"]},
+  travel:{name:"出行",officers:["建","开","收"]}
+};
+
+function init(){
+  var today=new Date();
+  fillSelect($("zr-year"),2000,2100,false);$("zr-year").value=today.getFullYear();
+  fillSelect($("zr-month"),1,12,true);$("zr-month").value=today.getMonth()+1;
+}
+init();
+
+function daysInMonth(y,m){return new Date(y,m,0).getDate();}
+
+window.zrCalc=function(){
+  var type=$("zr-type").value;
+  var y=parseInt($("zr-year").value,10),m=parseInt($("zr-month").value,10);
+  var err=$("zr-error"),res=$("zr-result");
+  if(y<1900||y>2100){err.textContent="仅支持1900年—2100年范围内的查询";err.style.display="block";res.classList.remove("show");return;}
+  err.style.display="none";
+
+  var C=window.MingliCore;
+  var cfg=TYPE_OFFICERS[type];
+  var dCount=daysInMonth(y,m);
+  var weekNames=["日","一","二","三","四","五","六"];
+  var goodDays=[];
+  for(var d=1;d<=dCount;d++){
+    var od=C.getDayOfficer(y,m,d);
+    if(cfg.officers.indexOf(od.officer)>=0){
+      var gz=C.getDayGanZhi(y,m,d);
+      var wd=weekNames[new Date(y,m-1,d).getDay()];
+      goodDays.push({d:d,officer:od.officer,gz:gz.gan+gz.zhi,wd:wd});
+    }
+  }
+
+  $("zr-title").textContent=y+"年"+m+"月 · "+cfg.name+" · 共筛选出 "+goodDays.length+" 个参考吉日";
+
+  if(goodDays.length===0){
+    $("zr-list").innerHTML='<div class="lc-empty">该月未筛选到符合条件的日期，可尝试切换其他月份或事项类型</div>';
+  }else{
+    $("zr-list").innerHTML=goodDays.map(function(g){
+      return '<div class="lc-day-item"><div><div class="di-date">'+y+'年'+m+'月'+g.d+'日 星期'+g.wd+'</div><div class="di-gz">干支纪日 '+g.gz+'日</div></div><div class="di-officer">值神·'+g.officer+'</div></div>';
+    }).join("");
+  }
+
+  res.classList.add("show");
+};
+zrCalc();
+})();
+</script>
+
+<footer id="site-footer"></footer>
+<script src="/assets/nav.js"></script>
+</body>
+</html>
