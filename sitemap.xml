@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://你的域名.com/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://你的域名.com/rili-zhuanhuan/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <!-- 后续每上线一个新工具页面，在此处补充一条 <url> -->
+  <url><loc>https://huangliapp.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://huangliapp.com/bazi/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://huangliapp.com/wuxing/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://huangliapp.com/huangli/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://huangliapp.com/zeri/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://huangliapp.com/shengxiao/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://huangliapp.com/peidui/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://huangliapp.com/rili-zhuanhuan/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://huangliapp.com/jieqi/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://huangliapp.com/qiming/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://huangliapp.com/blog/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://huangliapp.com/blog/bazi-rumen/</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://huangliapp.com/blog/wuxing-xiangsheng-xiangke/</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://huangliapp.com/blog/ershisi-jieqi-yu-mingli/</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <!-- 后续每上线一个新页面，在此处补充一条 <url> -->
 </urlset>
