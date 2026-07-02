@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>二十四节气查询 - 全年节气准确时间在线查询 | 玄机黄历</title>
+<meta name="description" content="免费在线二十四节气查询工具，支持1900-2100年任意年份，精确到分钟显示立春、清明、夏至、冬至等全年24个节气的具体日期与时间。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body data-page="jieqi">
+
+<header id="site-header"></header>
+<div class="breadcrumb"><a href="/">首页</a> / 二十四节气</div>
+
+<div class="page-wrap">
+<div id="lc-tool-root">
+<style>
+#lc-tool-root{--lc-red:var(--c-red);--lc-gold:var(--c-gold);--lc-gold-light:var(--c-gold-light);--lc-ink:var(--c-ink);--lc-paper:var(--c-paper-card);--lc-paper-2:var(--c-paper-2);--lc-textsoft:var(--c-text-soft);--lc-textfaint:var(--c-text-faint);font-family:"Noto Sans SC",sans-serif;color:var(--lc-ink);}
+#lc-tool-root *{box-sizing:border-box;}
+#lc-tool-root .lc-serif{font-family:"Noto Serif SC",serif;}
+#lc-tool-root .lc-header{text-align:center;padding:8px 0 28px;}
+#lc-tool-root .lc-header::after{content:"";display:block;width:120px;height:3px;margin:18px auto 0;background:linear-gradient(90deg,transparent,var(--lc-gold),transparent);}
+#lc-tool-root .lc-eyebrow{letter-spacing:.35em;font-size:12px;color:var(--lc-gold);font-weight:600;}
+#lc-tool-root .lc-title{font-size:30px;font-weight:700;margin:8px 0 6px;}
+#lc-tool-root .lc-sub{font-size:14px;color:var(--lc-textsoft);}
+#lc-tool-root .lc-card{background:var(--lc-paper);border:1px solid var(--c-border);border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,.35);overflow:hidden;position:relative;}
+#lc-tool-root .lc-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--lc-gold-dark,#a9822f),var(--lc-gold),var(--c-purple));}
+#lc-tool-root .lc-panel{padding:28px 24px 24px;}
+#lc-tool-root .lc-row{display:flex;gap:12px;align-items:flex-end;margin-bottom:20px;}
+#lc-tool-root .lc-field{flex:1;}
+#lc-tool-root .lc-field label{display:block;font-size:12px;color:var(--lc-textsoft);margin-bottom:6px;}
+#lc-tool-root select{width:100%;padding:10px 12px;border:1px solid var(--c-border-strong);border-radius:6px;background:var(--c-bg-3);font-size:15px;color:var(--lc-ink);}
+#lc-tool-root .lc-btn{padding:10px 22px;background:linear-gradient(135deg,var(--lc-gold-light),var(--lc-gold-dark,#a9822f));color:#1a1408;border:none;border-radius:6px;font-size:14.5px;font-weight:700;letter-spacing:.05em;cursor:pointer;white-space:nowrap;}
+#lc-tool-root .lc-term-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;}
+#lc-tool-root .lc-term-card{background:var(--lc-paper-2);border:1px solid var(--c-border);border-radius:8px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+#lc-tool-root .lc-term-card.season-spring{border-left:3px solid #5fae82;}
+#lc-tool-root .lc-term-card.season-summer{border-left:3px solid #c65d4a;}
+#lc-tool-root .lc-term-card.season-autumn{border-left:3px solid #d4b06a;}
+#lc-tool-root .lc-term-card.season-winter{border-left:3px solid #6ba8d8;}
+#lc-tool-root .lc-term-card .tc-name{font-size:16px;font-weight:700;color:var(--lc-ink);font-family:"Noto Serif SC",serif;}
+#lc-tool-root .lc-term-card .tc-idx{font-size:11px;color:var(--lc-textfaint);}
+#lc-tool-root .lc-term-card .tc-date{font-size:13px;color:var(--lc-gold-light);text-align:right;}
+#lc-tool-root .lc-term-card .tc-time{font-size:11.5px;color:var(--lc-textfaint);text-align:right;}
+#lc-tool-root .lc-article{margin-top:36px;font-size:15px;line-height:1.9;color:var(--lc-textsoft);}
+#lc-tool-root .lc-article h2{font-size:19px;color:var(--lc-ink);border-left:4px solid var(--lc-gold);padding-left:10px;margin:28px 0 12px;}
+#lc-tool-root .lc-article p{margin:0 0 12px;}
+@media(max-width:600px){#lc-tool-root .lc-row{flex-direction:column;align-items:stretch;}}
+</style>
+
+<div class="lc-header">
+  <div class="lc-eyebrow">24 SOLAR TERMS</div>
+  <h1 class="lc-title lc-serif">二十四节气</h1>
+  <p class="lc-sub">查询任意年份全年24个节气的准确日期与时间（北京时间）</p>
+</div>
+
+<div class="lc-card">
+  <div class="lc-panel">
+    <div class="lc-row">
+      <div class="lc-field"><label>选择年份</label><select id="jq-year"></select></div>
+      <button class="lc-btn" onclick="jqCalc()">查 询</button>
+    </div>
+    <div class="lc-term-grid" id="jq-grid"></div>
+  </div>
+</div>
+
+<div class="lc-article">
+  <h2 class="lc-serif">二十四节气是如何计算的？</h2>
+  <p>二十四节气本质上是太阳在黄道上运行到特定黄经度数的时刻，每15°黄经对应一个节气，因此本质上是天文历法，而非阴历或阳历的固定日期。本工具采用天文近似公式计算，精度可达分钟级，足以满足日常查询、择日参考等需求。</p>
+  <h2 class="lc-serif">节气和节日有什么关系？</h2>
+  <p>清明既是节气也是传统节日；冬至在很多地区也有"冬至大如年"的习俗；此外，节气还与农事安排、中医养生、传统命理（八字排盘以"节"划分月柱）密切相关，是中国传统历法体系的重要组成部分。</p>
+</div>
+
+</div>
+</div>
+
+<script src="/assets/mingli-core.js"></script>
+<script>
+(function(){
+"use strict";
+var $=function(id){return document.getElementById(id);};
+var SEASON=["winter","winter","spring","spring","spring","spring","spring","spring","summer","summer","summer","summer","summer","summer","autumn","autumn","autumn","autumn","autumn","autumn","winter","winter","winter","winter"];
+
+function init(){
+  var sel=$("jq-year");
+  var today=new Date().getFullYear();
+  for(var y=1900;y<=2100;y++){
+    var opt=document.createElement("option");opt.value=y;opt.textContent=y+"年";sel.appendChild(opt);
+  }
+  sel.value=today;
+}
+init();
+
+window.jqCalc=function(){
+  var y=parseInt($("jq-year").value,10);
+  var terms=window.MingliCore.getYearTerms(y);
+  var html=terms.map(function(t,i){
+    var timeStr=String(t.hh).padStart(2,"0")+":"+String(t.mm).padStart(2,"0");
+    return '<div class="lc-term-card season-'+SEASON[i]+'"><div><div class="tc-name">'+t.name+'</div><div class="tc-idx">第'+(i+1)+'个节气</div></div><div><div class="tc-date">'+t.m+'月'+t.d+'日</div><div class="tc-time">'+timeStr+'（北京时间）</div></div></div>';
+  }).join("");
+  $("jq-grid").innerHTML=html;
+};
+jqCalc();
+})();
+</script>
+
+<footer id="site-footer"></footer>
+<script src="/assets/nav.js"></script>
+</body>
+</html>
