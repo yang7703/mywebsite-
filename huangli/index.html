@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>老黄历查询 - 每日宜忌/黄道吉日在线查询 | 玄机黄历</title>
+<meta name="description" content="免费在线老黄历查询工具，按传统建除十二值算法计算任意日期的宜忌事项、干支纪日、五行、生肖冲煞，传统择日文化参考。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body data-page="huangli">
+
+<header id="site-header"></header>
+<div class="breadcrumb"><a href="/">首页</a> / 老黄历</div>
+
+<div class="page-wrap">
+<div id="lc-tool-root">
+<style>
+#lc-tool-root{--lc-red:var(--c-red);--lc-gold:var(--c-gold);--lc-gold-light:var(--c-gold-light);--lc-ink:var(--c-ink);--lc-paper:var(--c-paper-card);--lc-paper-2:var(--c-paper-2);--lc-textsoft:var(--c-text-soft);--lc-textfaint:var(--c-text-faint);font-family:"Noto Sans SC",sans-serif;color:var(--lc-ink);}
+#lc-tool-root *{box-sizing:border-box;}
+#lc-tool-root .lc-serif{font-family:"Noto Serif SC",serif;}
+#lc-tool-root .lc-header{text-align:center;padding:8px 0 28px;}
+#lc-tool-root .lc-header::after{content:"";display:block;width:120px;height:3px;margin:18px auto 0;background:linear-gradient(90deg,transparent,var(--lc-gold),transparent);}
+#lc-tool-root .lc-eyebrow{letter-spacing:.35em;font-size:12px;color:var(--lc-gold);font-weight:600;}
+#lc-tool-root .lc-title{font-size:30px;font-weight:700;margin:8px 0 6px;}
+#lc-tool-root .lc-sub{font-size:14px;color:var(--lc-textsoft);}
+#lc-tool-root .lc-card{background:var(--lc-paper);border:1px solid var(--c-border);border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,.35);overflow:hidden;position:relative;}
+#lc-tool-root .lc-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--lc-gold-dark,#a9822f),var(--lc-gold),var(--c-purple));}
+#lc-tool-root .lc-panel{padding:28px 24px 24px;}
+#lc-tool-root .lc-row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-bottom:16px;}
+#lc-tool-root .lc-field{flex:1;min-width:110px;}
+#lc-tool-root .lc-field label{display:block;font-size:12px;color:var(--lc-textsoft);margin-bottom:6px;}
+#lc-tool-root select{width:100%;padding:10px 12px;border:1px solid var(--c-border-strong);border-radius:6px;background:var(--c-bg-3);font-size:15px;color:var(--lc-ink);}
+#lc-tool-root .lc-btn{display:block;width:100%;padding:13px;background:linear-gradient(135deg,var(--lc-gold-light),var(--lc-gold-dark,#a9822f));color:#1a1408;border:none;border-radius:6px;font-size:16px;font-weight:700;letter-spacing:.1em;cursor:pointer;}
+#lc-tool-root .lc-quickbtns{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+#lc-tool-root .lc-quickbtn{padding:6px 14px;border:1px solid var(--c-border-strong);border-radius:20px;font-size:12.5px;color:var(--lc-textsoft);cursor:pointer;background:transparent;}
+#lc-tool-root .lc-quickbtn:hover{color:var(--lc-gold-light);border-color:var(--lc-gold);}
+#lc-tool-root .lc-error{color:var(--lc-red);font-size:13px;text-align:center;margin-top:12px;display:none;}
+#lc-tool-root .lc-result{margin-top:26px;display:none;}
+#lc-tool-root .lc-result.show{display:block;}
+#lc-tool-root .lc-date-hero{text-align:center;margin-bottom:22px;}
+#lc-tool-root .lc-date-hero .dh-date{font-size:24px;font-weight:700;color:var(--lc-gold-light);font-family:"Noto Serif SC",serif;}
+#lc-tool-root .lc-date-hero .dh-sub{font-size:13px;color:var(--lc-textsoft);margin-top:6px;}
+#lc-tool-root .lc-tags{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:14px 0 22px;}
+#lc-tool-root .lc-tag{background:var(--lc-paper-2);border:1px solid var(--c-border);padding:6px 14px;border-radius:20px;font-size:13px;}
+#lc-tool-root .lc-tag b{color:var(--lc-gold-light);}
+#lc-tool-root .lc-yiji-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;}
+#lc-tool-root .lc-yiji-box{border-radius:8px;padding:18px;border:1px solid var(--c-border);}
+#lc-tool-root .lc-yiji-box.yi{background:rgba(95,174,130,.08);border-color:rgba(95,174,130,.3);}
+#lc-tool-root .lc-yiji-box.ji{background:rgba(198,93,74,.08);border-color:rgba(198,93,74,.3);}
+#lc-tool-root .lc-yiji-box h4{margin:0 0 12px;font-size:15px;}
+#lc-tool-root .lc-yiji-box.yi h4{color:#5fae82;}
+#lc-tool-root .lc-yiji-box.ji h4{color:var(--lc-red);}
+#lc-tool-root .lc-yiji-box .items{display:flex;flex-wrap:wrap;gap:8px;}
+#lc-tool-root .lc-yiji-box .items span{font-size:13px;padding:4px 10px;border-radius:5px;background:var(--c-bg-3);}
+#lc-tool-root .lc-note{font-size:13.5px;color:var(--lc-textsoft);line-height:1.8;background:var(--lc-paper-2);border:1px dashed var(--c-border);border-radius:8px;padding:14px 16px;}
+#lc-tool-root .lc-article{margin-top:36px;font-size:15px;line-height:1.9;color:var(--lc-textsoft);}
+#lc-tool-root .lc-article h2{font-size:19px;color:var(--lc-ink);border-left:4px solid var(--lc-gold);padding-left:10px;margin:28px 0 12px;}
+#lc-tool-root .lc-article p{margin:0 0 12px;}
+@media(max-width:600px){#lc-tool-root .lc-row{flex-direction:column;align-items:stretch;}#lc-tool-root .lc-yiji-grid{grid-template-columns:1fr;}}
+</style>
+
+<div class="lc-header">
+  <div class="lc-eyebrow">DAILY ALMANAC</div>
+  <h1 class="lc-title lc-serif">老黄历</h1>
+  <p class="lc-sub">按传统"建除十二值"算法，查询任意日期的宜忌事项</p>
+</div>
+
+<div class="lc-card">
+  <div class="lc-panel">
+    <div class="lc-quickbtns">
+      <button class="lc-quickbtn" onclick="hlSetToday(-1)">昨天</button>
+      <button class="lc-quickbtn" onclick="hlSetToday(0)">今天</button>
+      <button class="lc-quickbtn" onclick="hlSetToday(1)">明天</button>
+    </div>
+    <div class="lc-row">
+      <div class="lc-field"><label>年</label><select id="hl-year"></select></div>
+      <div class="lc-field"><label>月</label><select id="hl-month"></select></div>
+      <div class="lc-field"><label>日</label><select id="hl-day"></select></div>
+    </div>
+    <button class="lc-btn" onclick="hlCalc()">查 询 黄 历</button>
+    <div class="lc-error" id="hl-error"></div>
+
+    <div class="lc-result" id="hl-result">
+      <div class="lc-date-hero">
+        <div class="dh-date lc-serif" id="hl-date-main"></div>
+        <div class="dh-sub" id="hl-date-sub"></div>
+      </div>
+      <div class="lc-tags" id="hl-tags"></div>
+      <div class="lc-yiji-grid">
+        <div class="lc-yiji-box yi"><h4>宜</h4><div class="items" id="hl-yi"></div></div>
+        <div class="lc-yiji-box ji"><h4>忌</h4><div class="items" id="hl-ji"></div></div>
+      </div>
+      <div class="lc-note" id="hl-note"></div>
+    </div>
+  </div>
+</div>
+
+<div class="lc-article">
+  <h2 class="lc-serif">老黄历的宜忌是怎么算出来的？</h2>
+  <p>传统黄历中的"宜、忌"体系流派较多，本工具采用其中最经典也最具计算规律性的"建除十二值"法：以农历月支为基准日（"建日"），此后每日依次轮值"建、除、满、平、定、执、破、危、成、收、开、闭"十二个值神，每个值神对应一组传统认为适宜或应当避开的事项。</p>
+  <h2 class="lc-serif">为什么不同网站的黄历宜忌不完全一样？</h2>
+  <p>黄历流派众多，除"建除十二值"外，还有二十八宿、董公择日、鲁班尺等多种参考体系并行使用，不同工具采纳的算法与内容取舍不同，因此结果会存在差异，属正常现象，建议结合多方参考、理性看待。</p>
+  <h2 class="lc-serif">黄历内容可以直接用于婚丧嫁娶等大事吗？</h2>
+  <p>本工具内容均整理自传统文化资料，仅供文化学习与娱乐参考。涉及婚嫁、乔迁、开业、安葬等重要事项，建议结合当地习俗、专业人士意见及实际情况综合考量，不应仅以本工具结果作为决策依据。</p>
+</div>
+
+</div>
+</div>
+
+<script src="/assets/mingli-core.js"></script>
+<script>
+(function(){
+"use strict";
+var $=function(id){return document.getElementById(id);};
+function fillSelect(sel,start,end,pad){sel.innerHTML="";for(var i=start;i<=end;i++){var opt=document.createElement("option");opt.value=i;opt.textContent=pad?String(i).padStart(2,"0"):i;sel.appendChild(opt);}}
+
+function setDate(dt){
+  $("hl-year").value=dt.getFullYear();
+  $("hl-month").value=dt.getMonth()+1;
+  $("hl-day").value=dt.getDate();
+}
+function init(){
+  fillSelect($("hl-year"),1900,2100,false);
+  fillSelect($("hl-month"),1,12,true);
+  fillSelect($("hl-day"),1,31,true);
+  setDate(new Date());
+}
+init();
+
+window.hlSetToday=function(offset){
+  var dt=new Date();
+  dt.setDate(dt.getDate()+offset);
+  setDate(dt);
+  hlCalc();
+};
+
+window.hlCalc=function(){
+  var y=parseInt($("hl-year").value,10),m=parseInt($("hl-month").value,10),d=parseInt($("hl-day").value,10);
+  var err=$("hl-error"),res=$("hl-result");
+  var chk=new Date(y,m-1,d);
+  if(chk.getMonth()!==m-1||chk.getFullYear()!==y){err.textContent="日期不存在，请检查输入";err.style.display="block";res.classList.remove("show");return;}
+  if(y<1900||y>2100){err.textContent="仅支持1900年—2100年范围内的日期";err.style.display="block";res.classList.remove("show");return;}
+  err.style.display="none";
+
+  var C=window.MingliCore;
+  var lunar=C.solar2lunar(y,m,d);
+  var dGZ=C.getDayGanZhi(y,m,d);
+  var officerData=C.getDayOfficer(y,m,d);
+  var weekNames=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+  var weekday=weekNames[new Date(y,m-1,d).getDay()];
+  var chongIdx=(dGZ.zhiIdx+6)%12;
+  var chongAnimal=C.Animals[chongIdx];
+  var dayWx=C.GanWuxing[dGZ.gan];
+
+  $("hl-date-main").textContent=y+"年"+m+"月"+d+"日  "+weekday;
+  $("hl-date-sub").textContent="农历"+lunar.ganZhiYear+"年 "+lunar.lMonthCn+lunar.lDayCn+"  ·  干支纪日 "+dGZ.gan+dGZ.zhi+"日";
+
+  $("hl-tags").innerHTML=
+    '<span class="lc-tag">值神 <b>'+officerData.officer+'</b></span>'+
+    '<span class="lc-tag">五行 <b>'+dayWx+'</b></span>'+
+    '<span class="lc-tag">生肖 <b>'+lunar.animal+'</b></span>'+
+    '<span class="lc-tag">冲 <b>'+chongAnimal+'</b></span>';
+
+  $("hl-yi").innerHTML=officerData.info.good.map(function(x){return"<span>"+x+"</span>";}).join("");
+  $("hl-ji").innerHTML=officerData.info.bad.map(function(x){return"<span>"+x+"</span>";}).join("");
+  $("hl-note").textContent="【"+officerData.officer+"日】"+officerData.info.note+"　今日生肖冲"+chongAnimal+"，属"+chongAnimal+"的朋友重要事项可适当避开。";
+
+  res.classList.add("show");
+};
+hlCalc();
+})();
+</script>
+
+<footer id="site-footer"></footer>
+<script src="/assets/nav.js"></script>
+</body>
+</html>
